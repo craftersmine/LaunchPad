@@ -1,0 +1,54 @@
+﻿   
+<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:craftersmine.AppLauncher"
+    xmlns:pages="using:craftersmine.AppLauncher.Pages"
+    xmlns:appModel="using:Windows.ApplicationModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:custom="using:Microsoft.UI.Xaml.Controls"
+    x:Class="craftersmine.AppLauncher.MainPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="Transparent" x:Name="AppTitlebar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Image Width="16" Height="16" Grid.Column="1" Margin="8 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Text="App Launcher" x:Uid="AppName" Margin="28 0 0 0" VerticalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}" Grid.Column="1" />
+        </Grid>
+
+        <ContentDialog Grid.Row="1" Title="Application status" x:Name="AppStatusDialog" Visibility="Collapsed" x:Uid="AppStatusDialog"
+                       PrimaryButtonText="Close App" SecondaryButtonText="Terminate App" CloseButtonText="Unlock Launcher"
+                       PrimaryButtonStyle="{ThemeResource AccentButtonStyle}"
+                       PrimaryButtonClick="appStatusDialog_PrimaryButtonClick" SecondaryButtonClick="appStatusDialog_SecondaryButtonClick"
+                       CloseButtonClick="appStatusDialog_CloseButtonClick">
+            <StackPanel Orientation="Horizontal" Height="48">
+                <custom:ProgressRing Margin="0 0 16 0"/>
+                <TextBlock Text="" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="AppStatusTextBlock"/>
+            </StackPanel>
+        </ContentDialog>
+
+        <custom:NavigationView x:Name="NavigationView" SelectionChanged="NavigationView_SelectionChanged" Grid.Row="1" IsPaneOpen="False"
+                           BackRequested="NavigationView_BackRequested" IsBackEnabled="False" IsBackButtonVisible="Collapsed" Loaded="navigationView_Loaded">
+            <custom:NavigationView.MenuItems>
+                <custom:NavigationViewItem IsSelected="True" x:Uid="Main_NavMenu_Item_Home" x:Name="MenuHome" Icon="Home"/>
+                <custom:NavigationViewItem x:Uid="Main_NavMenu_Item_AllApps" x:Name="MenuAllApps" Content="All Apps" Visibility="Collapsed">
+                    <custom:NavigationViewItem.Icon>
+                        <PathIcon Data="{StaticResource IconAppList}"/>
+                    </custom:NavigationViewItem.Icon>
+                </custom:NavigationViewItem>
+            </custom:NavigationView.MenuItems>
+            <Frame x:Name="FrameRoot"/>
+        </custom:NavigationView>
+    </Grid>
+</Page>

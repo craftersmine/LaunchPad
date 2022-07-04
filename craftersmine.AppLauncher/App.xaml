@@ -1,0 +1,18 @@
+﻿<Application
+    x:Class="craftersmine.AppLauncher.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:craftersmine.AppLauncher"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls">
+    <Application.Resources>
+        <controls:XamlControlsResources>
+            <controls:XamlControlsResources.MergedDictionaries>
+                <ResourceDictionary x:Name="Icons">
+                    <x:String x:Key="IconSortAscending">m17 19.44 3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V2.75a.75.75 0 0 1 1.5 0v16.69ZM7.072 2a.75.75 0 0 1 .697.487l3.184 8.5a.75.75 0 0 1-1.405.526L8.794 9.5H5.238l-.79 2.023a.75.75 0 0 1-1.397-.546l3.317-8.5A.75.75 0 0 1 7.072 2Zm-.02 2.85L5.823 8h2.41l-1.18-3.15ZM4.75 13a.75.75 0 1 0 0 1.5h3.388l-4.021 6.349a.75.75 0 0 0 .633 1.15H9.5a.75.75 0 1 0 0-1.5H6.113l4.021-6.348A.75.75 0 0 0 9.5 13H4.75Z</x:String>
+                    <x:String x:Key="IconSortDescending">M4.75 2a.75.75 0 1 0 0 1.5h3.387l-4.02 6.349A.75.75 0 0 0 4.75 11H9.5a.75.75 0 0 0 0-1.5H6.113l4.02-6.349A.75.75 0 0 0 9.5 2H4.75Zm2.322 10a.75.75 0 0 0-.704.477l-3.317 8.5a.75.75 0 0 0 1.398.545l.79-2.022h3.555l.754 2.013a.75.75 0 0 0 1.405-.526l-3.184-8.5A.75.75 0 0 0 7.072 12Zm-.02 2.85L8.232 18H5.823l1.23-3.15Zm4.168 1.37a.75.75 0 0 1 1.06 0l3.22 3.22V2.75a.75.75 0 0 1 1.5 0v16.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z</x:String>
+                    <x:String x:Key="IconAppList">M6.248 16.002c.966 0 1.75.784 1.75 1.75v2.498A1.75 1.75 0 0 1 6.248 22H3.75A1.75 1.75 0 0 1 2 20.25v-2.498c0-.966.784-1.75 1.75-1.75h2.498ZM9.748 18h11.505a.75.75 0 0 1 .102 1.493l-.102.007H9.748a.75.75 0 0 1-.102-1.493L9.748 18h11.505H9.748Zm-3.5-8.999c.966 0 1.75.784 1.75 1.75v2.498a1.75 1.75 0 0 1-1.75 1.75H3.75A1.75 1.75 0 0 1 2 13.249V10.75c0-.966.784-1.75 1.75-1.75h2.498ZM9.748 11h11.505a.75.75 0 0 1 .102 1.493l-.102.007H9.748a.75.75 0 0 1-.102-1.493L9.748 11h11.505H9.748Zm-3.5-9c.966 0 1.75.784 1.75 1.75v2.498a1.75 1.75 0 0 1-1.75 1.75H3.75A1.75 1.75 0 0 1 2 6.248V3.75C2 2.784 2.784 2 3.75 2h2.498Zm3.5 2h11.505a.75.75 0 0 1 .102 1.493l-.102.007H9.748a.75.75 0 0 1-.102-1.493L9.748 4h11.505H9.748Z</x:String>
+                </ResourceDictionary>
+            </controls:XamlControlsResources.MergedDictionaries>
+        </controls:XamlControlsResources>
+    </Application.Resources>
+</Application>

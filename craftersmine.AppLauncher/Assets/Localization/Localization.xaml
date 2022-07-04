@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--#region Hamburger Menu -->
+    <x:String x:Key="Localization.Menu.Item.Home">Home</x:String>
+    <!--#endregion-->
+    
+    <!--#region Settings Page -->
+    <x:String x:Key="Localization.Page.Settings.Sound.Header">Sound</x:String>
+    <x:String x:Key="Localization.Page.Settings.Sound.Tip">Enable or disable navigation sound like on Xbox</x:String>
+    <x:String x:Key="Localization.Page.Settings.Sound.Enable">Sound enabled</x:String>
+    <x:String x:Key="Localization.Page.Settings.Sound.Disable">Sound disabled</x:String>
+    <!--#endregion-->
+</ResourceDictionary>

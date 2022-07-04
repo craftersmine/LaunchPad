@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="uap mp iot rescap">
+
+  <Identity
+    Name="craftersmine.AppLauncher"
+    Publisher="CN=craftersmine"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="7bf8e54a-a474-470d-b3ed-3889a93dc0ef" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>ms-resource:AppName_Manifest</DisplayName>
+    <PublisherDisplayName>craftersmine</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="craftersmine.AppLauncher.App">
+      <uap:VisualElements
+        DisplayName="ms-resource:AppName_Manifest"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png"
+        Description="App Launcher"
+        BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
+      </uap:VisualElements>
+		<Extensions>
+			<desktop:Extension Category="windows.fullTrustProcess" Executable="Assets/LauncherBridge/craftersmine.AppLauncher.LauncherBridgeClient.exe">
+				<desktop:FullTrustProcess>
+					<desktop:ParameterGroup GroupId="InitAppBridge" Parameters="-pipeId=&quot;\\.\pipe\AppLauncherBridgePipeId_{1699af15-c7a1-4bfd-97ce-c98e1c00d827}\&quot;"/>
+				</desktop:FullTrustProcess>
+			</desktop:Extension>
+		</Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+	<rescap:Capability Name="runFullTrust"/>
+    <Capability Name="internetClientServer"/>
+    <iot:Capability Name="systemManagement"/>
+    <uap:Capability Name="musicLibrary"/>
+    <uap:Capability Name="picturesLibrary"/>
+    <uap:Capability Name="videosLibrary"/>
+    <uap:Capability Name="removableStorage"/>
+  </Capabilities>
+</Package>

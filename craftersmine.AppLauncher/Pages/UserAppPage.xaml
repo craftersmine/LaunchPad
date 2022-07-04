@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="craftersmine.AppLauncher.Pages.UserAppPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:craftersmine.AppLauncher.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:custom="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto" Margin="48 48 0 0">
+            <StackPanel HorizontalAlignment="Left">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                    <Grid Height="300" Width="200" Background="{ThemeResource SystemControlBackgroundBaseLowRevealBackgroundBrush}" CornerRadius="5" Margin="0 40 0 0" HorizontalAlignment="Left">
+                        <Image Height="300" Width="200" Source="{x:Bind SelectedApp.Image}"/>
+                    </Grid>
+                    <custom:SplitButton VerticalAlignment="Top" Margin="0 10 0 0" Width="200" x:Name="LaunchButton" Click="LaunchButton_OnClick"> 
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Play" Margin="0 0 10 0"/>
+                            <TextBlock Text="Launch" x:Uid="/UserAppInfoPage/LaunchButton"/>
+                        </StackPanel>
+                        <custom:SplitButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Edit" Icon="Edit" x:Uid="/UserAppInfoPage/LaunchButton_EditButtonFlyoutItem" Click="EditButtonFlyoutItem_OnClick"/>
+                                <MenuFlyoutItem Text="Remove" Icon="Delete" x:Uid="/UserAppInfoPage/LaunchButton_RemoveButtonFlyoutItem" Click="RemoveButtonFlyoutItem_OnClick"/>
+                            </MenuFlyout>
+                        </custom:SplitButton.Flyout>
+                    </custom:SplitButton>
+                    <StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                
+                <TextBlock Text="{x:Bind SelectedApp.Name}" Style="{ThemeResource TitleTextBlockStyle}"
+                   Margin="0 40 0 0"/>
+                <TextBlock Text="{x:Bind SelectedApp.Description}" TextWrapping="WrapWholeWords" Margin="0 10 0 0"/>
+                
+                <custom:Expander  Margin="0 40 0 0" Header="Application information" MinWidth="350" HorizontalContentAlignment="Left"
+                                  x:Uid="/UserAppInfoPage/InfoExpander">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="App:" Margin="0 0 10 0" Grid.Column="0" Grid.Row="0" x:Uid="/UserAppInfoPage/InfoExpander_Executable"/>
+                        <TextBlock Text="{x:Bind SelectedApp.ExecutablePath}" Grid.Column="1" Grid.Row="0" TextWrapping="WrapWholeWords"/>
+                        <TextBlock Text="Working Directory: " Grid.Row="1" Margin="0 0 10 0" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_WorkingDirectory"/>
+                        <TextBlock Text="{x:Bind WorkingDir}" Grid.Row="1" Grid.Column="1" TextWrapping="WrapWholeWords"/>
+                        <TextBlock Text="Launch Arguments:" Grid.Row="2" Margin="0 0 10 0" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_LaunchArguments"/>
+                        <TextBlock Text="{x:Bind LaunchArguments}" Grid.Row="2" Grid.Column="1" TextWrapping="WrapWholeWords"/>
+                        <TextBlock Text="Run as Administrator:" Margin="0 0 10 0" Grid.Row="3" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_RunAsAdmin"/>
+                        <TextBlock Text="{x:Bind RunAsAdmin}" Grid.Row="3" Grid.Column="1" TextWrapping="WrapWholeWords"/>
+                    </Grid>
+                </custom:Expander>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

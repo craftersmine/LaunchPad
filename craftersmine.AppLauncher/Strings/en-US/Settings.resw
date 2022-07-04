@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description.Text" xml:space="preserve">
+    <value>This app allows you to launch your applications from one place, even if your app is located on external device</value>
+  </data>
+  <data name="About_Header.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="About_Version.Text" xml:space="preserve">
+    <value>Version: </value>
+  </data>
+  <data name="AppListErrorDlgOld_Content" xml:space="preserve">
+    <value>Old application list file is still remains in application folder, would you like to remove this file as well?</value>
+  </data>
+  <data name="AppListErrorDlgOld_Title" xml:space="preserve">
+    <value>Old file still remains</value>
+  </data>
+  <data name="AppListErrorOld_Title" xml:space="preserve">
+    <value>Old application list file still exists!</value>
+  </data>
+  <data name="AppListSaveError_Content" xml:space="preserve">
+    <value>Unable to locate old app list file! File is missing, renamed or removed!
+Save failed!</value>
+  </data>
+  <data name="AppListSaveError_Title" xml:space="preserve">
+    <value>Error while saving old list</value>
+  </data>
+  <data name="ErrorBar.Message" xml:space="preserve">
+    <value>There was an issue with loading application list from saved file. This could be caused by application crash, incorrect system shutdown or failed write operation while trying to save application list file. All saved app entries in app was lost due to file become unreadable to app. You can still recover old file to try restore app list manually.</value>
+  </data>
+  <data name="ErrorBar.Title" xml:space="preserve">
+    <value>Error with application list</value>
+  </data>
+  <data name="ErrorBar_Save.Content" xml:space="preserve">
+    <value>Save old application list file (XML)</value>
+  </data>
+  <data name="FileTypes_Xml" xml:space="preserve">
+    <value>XML Documents</value>
+  </data>
+  <data name="Language_Header.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Language_RestartButton.Content" xml:space="preserve">
+    <value>Restart App</value>
+  </data>
+  <data name="Language_RestartRecommended.Text" xml:space="preserve">
+    <value>Restart required to properly apply application language</value>
+  </data>
+  <data name="LaunchParams_Header.Text" xml:space="preserve">
+    <value>Launcher Lock</value>
+  </data>
+  <data name="LockDialogTimeoutBox.Description" xml:space="preserve">
+    <value>Time in milliseconds (1s = 1000ms, Default: 3000ms or 3s)</value>
+  </data>
+  <data name="LockDialogTimeoutBox.Header" xml:space="preserve">
+    <value>Time for how long launcher lock window will show application exit code until unlocking launcher</value>
+  </data>
+  <data name="Page_Header.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Picker_Save_AppList" xml:space="preserve">
+    <value>Save list file</value>
+  </data>
+  <data name="Sound_Header.Text" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="Sound_Toggle.Header" xml:space="preserve">
+    <value>Enable sound for navigation within application like on Xbox</value>
+  </data>
+  <data name="Sound_Toggle.OffContent" xml:space="preserve">
+    <value>Sound disabled</value>
+  </data>
+  <data name="Sound_Toggle.OnContent" xml:space="preserve">
+    <value>Sound enabled</value>
+  </data>
+  <data name="Theme_Header.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Theme_Radio_Dark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Theme_Radio_Light.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Theme_Radio_System.Content" xml:space="preserve">
+    <value>Use system setting</value>
+  </data>
+</root>
