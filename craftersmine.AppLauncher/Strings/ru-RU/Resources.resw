@@ -162,6 +162,22 @@
   <data name="Ok" xml:space="preserve">
     <value>ОК</value>
   </data>
+  <data name="UnableToFindDirDlg_Content" xml:space="preserve">
+    <value>Не удалось найти рабочий каталог для {0} в указанном месте. Проверьте, существует ли каталог по указанному пути и попробуйте снова, или измените рабочий каталог в свойствах приложения
+
+Рабочий каталог: {1}</value>
+  </data>
+  <data name="UnableToFindFileDlg_Content" xml:space="preserve">
+    <value>Не удалось найти исполняемый файл для {0} в указанном месте. Проверьте, существует ли исполняемый файл по указанному пути и попробуйте снова, или измените путь к исполняемому файлу в свойствах приложения
+
+Путь к исполняемому файлу: {1}</value>
+  </data>
+  <data name="UnableToFindFileOrDirDlg_OpenApplicationEditorButton" xml:space="preserve">
+    <value>Редактировать приложение</value>
+  </data>
+  <data name="UnableToFindFileOrDirDlg_Title" xml:space="preserve">
+    <value>Не удалось найти файл или каталог</value>
+  </data>
   <data name="Yes" xml:space="preserve">
     <value>Да</value>
   </data>

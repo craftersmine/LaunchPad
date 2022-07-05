@@ -162,6 +162,22 @@
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="UnableToFindDirDlg_Content" xml:space="preserve">
+    <value>Unable to find working directory for {0} at specified location. Check that this directory exists and try again, or change working directory in application properties
+
+Working Directory: {1}</value>
+  </data>
+  <data name="UnableToFindFileDlg_Content" xml:space="preserve">
+    <value>Unable to find executable for {0} at specified location. Check that this file exists and try again, or change working directory in application properties
+
+Executable path: {1}</value>
+  </data>
+  <data name="UnableToFindFileOrDirDlg_OpenApplicationEditorButton" xml:space="preserve">
+    <value>Edit application</value>
+  </data>
+  <data name="UnableToFindFileOrDirDlg_Title" xml:space="preserve">
+    <value>Unable to find file or directory</value>
+  </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
