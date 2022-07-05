@@ -88,7 +88,7 @@
                 <StackPanel Margin="0 40 0 50" Orientation="Horizontal">
                     <Button Style="{ThemeResource AccentButtonStyle}" MinWidth="150" x:Name="SaveButton" Click="saveButton_Click">
                         <StackPanel Orientation="Horizontal">
-                            <custom:ProgressRing Visibility="Collapsed" Width="20" Height="20" IsIndeterminate="True" x:Name="SavingProgressRing" Foreground="{ThemeResource SystemControlForegroundAccentBrush}"/>
+                            <custom:ProgressRing Visibility="Collapsed" Width="20" Height="20" IsIndeterminate="True" x:Name="SavingProgressRing" Foreground="{ThemeResource AppBarBackgroundThemeBrush}"/>
                             <TextBlock Text="Save Changes" Visibility="Visible" x:Name="SaveButtonTextBlock"
                                        x:Uid="/UserAppEditor/SaveButtonText"/>
                         </StackPanel>
