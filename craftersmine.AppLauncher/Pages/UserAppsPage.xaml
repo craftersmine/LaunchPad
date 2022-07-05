@@ -78,9 +78,16 @@
                                 <AcrylicBrush BackgroundSource="Backdrop" Opacity="0.3" TintOpacity="0.8" TintColor="{ThemeResource SystemChromeHighColor}" TintLuminosityOpacity="0.8"/>
                             </Grid.Background>
                             <Image Source="{x:Bind Image}" ImageFailed="gridView_appItem_Image_ImageFailed" Width="200" Height="300"/>
-                            <StackPanel Orientation="Vertical" Height="60" VerticalAlignment="Bottom" Background="{ThemeResource SystemControlBackgroundAltMediumBrush}" Padding="12" x:Name="GridViewItemInfoStackPanel">
+                            <StackPanel Orientation="Vertical" Height="60" VerticalAlignment="Bottom" Padding="12" x:Name="GridViewItemInfoStackPanel">
+                                <StackPanel.Background>
+                                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.3" TintColor="{ThemeResource SystemAltHighColor}"/>
+                                </StackPanel.Background>
                                 <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis"/>
-                                <TextBlock Text="{x:Bind Description}" TextTrimming="CharacterEllipsis" Opacity="0.5" x:Name="GridViewItemDescriptionTextBlock" />
+                                <TextBlock Text="{x:Bind Description}" TextTrimming="CharacterEllipsis" x:Name="GridViewItemDescriptionTextBlock">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{ThemeResource SystemBaseMediumLowColor}"/>
+                                    </TextBlock.Foreground>
+                                 </TextBlock>
                             </StackPanel>
 
                             <Grid.ContextFlyout>
