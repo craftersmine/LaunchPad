@@ -24,7 +24,7 @@
                     </Button>
                 </Grid>
                 <TextBlock Text="Recommended image aspect ratio: 2:3. Recommended image size: 600x900 pixels" Margin="0 10 0 0" FontSize="12pt"
-                           x:Uid="/UserAppEditor/AppCoverRecommendationsTextBlock"/>
+                           x:Uid="/UserAppEditor/AppCoverRecommendationsTextBlock" TextWrapping="WrapWholeWords"/>
 
                 <TextBlock Text="App information" Margin="0 40 0 0" Style="{ThemeResource SubtitleTextBlockStyle}"
                            x:Uid="/UserAppEditor/AppInfoHeader"/>
