@@ -37,7 +37,7 @@
                 <TextBlock Text="{x:Bind SelectedApp.Description}" TextWrapping="WrapWholeWords" Margin="0 10 0 0" MaxWidth="650" HorizontalAlignment="Left"/>
                 
                 <custom:Expander  Margin="0 40 0 0" Header="Application information" MinWidth="350" HorizontalContentAlignment="Left"
-                                  x:Uid="/UserAppInfoPage/InfoExpander">
+                                  x:Uid="/UserAppInfoPage/InfoExpander" HorizontalAlignment="Stretch">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
