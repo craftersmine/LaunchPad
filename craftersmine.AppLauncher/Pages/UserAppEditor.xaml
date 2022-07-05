@@ -56,7 +56,7 @@
 
                 <custom:Expander x:Uid="/UserAppEditor/AdvancedOptions" Margin="0 10 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                     <StackPanel HorizontalAlignment="Stretch">
-                        <TextBlock Text="App launch arguments" Margin="0 18 0 0"
+                        <TextBlock Text="App launch arguments"
                                    x:Uid="/UserAppEditor/AppLaunchArgumentsLabel"/>
                         <TextBox PlaceholderText="(Optional) Enter a launch arguments" Margin="0 10 0 0" x:Name="AppLaunchArgumentsTextBox"
                                  x:Uid="/UserAppEditor/AppLaunchArgumentsTextBox"/>
