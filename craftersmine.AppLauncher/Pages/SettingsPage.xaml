@@ -54,12 +54,6 @@
                                   Maximum="10000" Minimum="500" SpinButtonPlacementMode="Inline" x:Name="LockDialogTimeout" HorizontalAlignment="Left"
                                   LostFocus="LockDialogTimeout_OnLostFocus" x:Uid="/Settings/LockDialogTimeoutBox" MaxWidth="450"/>
 
-
-                <TextBlock Text="Debug actions" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0 40 0 0"/>
-                <StackPanel Margin="0 10 0 0">
-                    <Button Style="{ThemeResource AccentButtonStyle}" Content="Run App" Click="runApp_Click" x:Name="RunApp"/>
-                </StackPanel>
-
                 <TextBlock Text="About" x:Uid="/Settings/About_Header" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0 40 0 0"/>
                 <StackPanel Margin="0 10 0 50">
                     <TextBlock IsTextSelectionEnabled="False" x:Uid="/Settings/About_Description" TextWrapping="WrapWholeWords"/>
