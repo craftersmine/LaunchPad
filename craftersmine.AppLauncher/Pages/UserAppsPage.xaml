@@ -48,7 +48,7 @@
                               Click="button_addItem_Click">
                 </AppBarButton>
                     <AppBarSeparator Visibility="Collapsed"/>
-                <AppBarButton Icon="Sort" Label="Sort" ToolTipService.ToolTip="Sort apps list" x:Name="ButtonSortList" Visibility="Collapsed">
+                <AppBarButton Icon="Sort" Label="Sort" x:Name="ButtonSortList" Visibility="Collapsed">
                     <AppBarButton.Flyout>
                         <MenuFlyout>
                             <MenuFlyoutItem Text="Ascending">
