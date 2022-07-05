@@ -29,7 +29,7 @@
 
         <ContentDialog Grid.Row="1" Title="Application status" x:Name="AppStatusDialog" Visibility="Collapsed" x:Uid="AppStatusDialog"
                        PrimaryButtonText="Close App" SecondaryButtonText="Terminate App" CloseButtonText="Unlock Launcher"
-                       PrimaryButtonStyle="{ThemeResource AccentButtonStyle}"
+                       DefaultButton="Primary"
                        PrimaryButtonClick="appStatusDialog_PrimaryButtonClick" SecondaryButtonClick="appStatusDialog_SecondaryButtonClick"
                        CloseButtonClick="appStatusDialog_CloseButtonClick">
             <StackPanel Orientation="Horizontal" Height="48">
