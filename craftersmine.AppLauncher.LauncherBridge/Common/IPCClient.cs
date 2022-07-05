@@ -63,6 +63,16 @@ namespace craftersmine.AppLauncher.LauncherBridgeClient.Common
             string procExitInfo = new ProcessExitedInformation(appUuid, exitCode).ToString();
             ipc.RemoteRequestWithoutResponse(Encoding.Default.GetBytes("APPEXITED::" + procExitInfo));
         }
+
+        public void SendNoExecutableOrWorkingDirectoryFound(string appUuid, bool isWorkingDir)
+        {
+            MissingFileOrDirectoryInformation data = new MissingFileOrDirectoryInformation();
+            data.AppUuid = appUuid;
+            if (isWorkingDir)
+                data.Type = MissingEntityType.WorkingDirectory;
+            else data.Type = MissingEntityType.Executable;
+            ipc.RemoteRequestWithoutResponse(Encoding.Default.GetBytes("MISSINGFILES::" + data.ToString()));
+        }
     }
 
     public class RemoteCallEventArgs : EventArgs

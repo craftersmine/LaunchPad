@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,10 +42,29 @@ namespace craftersmine.AppLauncher.LauncherBridgeClient.Common
             CurrentApp = app;
 
             ProcessStartInfo processStartInfo = new ProcessStartInfo();
-            processStartInfo.Arguments = CurrentApp.LaunchArguments;
+
             processStartInfo.FileName = CurrentApp.ExecutablePath;
-            processStartInfo.WorkingDirectory = CurrentApp.WorkingDirectory;
-            processStartInfo.UseShellExecute = true;
+
+            if (!DetectExecutable())
+            {
+                Program.IPCClient.SendNoExecutableOrWorkingDirectoryFound(CurrentApp.Uuid, false);
+                Program.Exit();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(CurrentApp.WorkingDirectory))
+                CurrentApp.WorkingDirectory = Path.GetDirectoryName(CurrentApp.ExecutablePath);
+
+            if (!DetectWorkingDir())
+            {
+                Program.IPCClient.SendNoExecutableOrWorkingDirectoryFound(CurrentApp.Uuid, true);
+                Program.Exit();
+                return;
+            }
+
+            processStartInfo.Arguments = CurrentApp.LaunchArguments;
+
+            processStartInfo.WorkingDirectory = CurrentApp.WorkingDirectory ?? string.Empty;
 
             if (app.RunAsAdmin)
                 processStartInfo.Verb = "runas";
@@ -63,14 +83,26 @@ namespace craftersmine.AppLauncher.LauncherBridgeClient.Common
 
         private bool DetectExecutable()
         {
-            // TODO: Implement executable location detection
-            return true;
+            try
+            {
+                return File.Exists(CurrentApp.ExecutablePath);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         private bool DetectWorkingDir()
         {
-            // TODO: Implement working directory location detection
-            return true;
+            try
+            {
+                return Directory.Exists(CurrentApp.WorkingDirectory);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
 
         }
 

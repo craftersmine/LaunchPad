@@ -17,7 +17,13 @@ using Windows.UI;
 using Windows.UI.Core;
 using craftersmine.AppLauncher.Core;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
+using NavigationView = Microsoft.UI.Xaml.Controls.NavigationView;
+using NavigationViewBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible;
+using NavigationViewBackRequestedEventArgs = Microsoft.UI.Xaml.Controls.NavigationViewBackRequestedEventArgs;
+using NavigationViewItem = Microsoft.UI.Xaml.Controls.NavigationViewItem;
+using NavigationViewSelectionChangedEventArgs = Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs;
 
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
@@ -66,15 +72,57 @@ namespace craftersmine.AppLauncher
                     AppStatusTextBlock.Text = string.Format(ResourceManagers.StringsCommonResources.GetString("AppStatusTextBlock_Launched"), AppManager.GetApplicationByUuid(e.AppUuid).Name);
                     break;
                 case ApplicationEventType.Exited:
-                        AppStatusTextBlock.Text = string.Format(ResourceManagers.StringsCommonResources.GetString("AppStatusTextBlock_Closed"), AppManager.GetApplicationByUuid(e.AppUuid).Name, e.ExitCode);
-                        await Task.Delay(SettingsManager.Instance.ApplicationExitedWaitTime);
-                        AppStatusDialog.Hide();
-                        AppStatusTextBlock.Text = "";
-                        AppStatusDialog.IsPrimaryButtonEnabled = false;
-                        AppStatusDialog.IsSecondaryButtonEnabled = false;
+                    AppStatusTextBlock.Text = string.Format(ResourceManagers.StringsCommonResources.GetString("AppStatusTextBlock_Closed"), AppManager.GetApplicationByUuid(e.AppUuid).Name, e.ExitCode);
+                    await Task.Delay(SettingsManager.Instance.ApplicationExitedWaitTime);
+                    HideStatusDialog();
+                    break;
+                case ApplicationEventType.MissingExecutable:
+                    HideStatusDialog();
+                    ShowMissingFileOrDirDialog(e.AppUuid, false);
+                    break;
+                case ApplicationEventType.MissingWorkingDirectory:
+                    HideStatusDialog();
+                    ShowMissingFileOrDirDialog(e.AppUuid, true);
                     break;
                 }
             });
+        }
+
+        private void HideStatusDialog()
+        {
+            AppStatusDialog.Hide();
+            AppStatusTextBlock.Text = "";
+            AppStatusDialog.IsPrimaryButtonEnabled = false;
+            AppStatusDialog.IsSecondaryButtonEnabled = false;
+        }
+
+        private async void ShowMissingFileOrDirDialog(string appUuid, bool isWorkingDir)
+        {
+
+            ContentDialog missingExecutableContentDialog = new ContentDialog();
+                missingExecutableContentDialog.DefaultButton = ContentDialogButton.Close;
+            missingExecutableContentDialog.CloseButtonText =
+                ResourceManagers.StringsCommonResources.GetString("Ok");
+            missingExecutableContentDialog.PrimaryButtonText =
+                ResourceManagers.StringsCommonResources.GetString(
+                    "UnableToFindFileOrDirDlg_OpenApplicationEditorButton");
+            missingExecutableContentDialog.Tag = appUuid;
+            missingExecutableContentDialog.PrimaryButtonClick += MissingExecutableContentDialog_PrimaryButtonClick;
+            missingExecutableContentDialog.Title = ResourceManagers.StringsCommonResources.GetString("UnableToFindFileOrDirDlg_Title");
+            if (isWorkingDir)
+                missingExecutableContentDialog.Content = string.Format(ResourceManagers.StringsCommonResources.GetString("UnableToFindDirDlg_Content"),
+                    AppManager.GetApplicationByUuid(appUuid).Name, AppManager.GetApplicationByUuid(appUuid).WorkingDirectory);
+            if (!isWorkingDir)
+                missingExecutableContentDialog.Content = string.Format(ResourceManagers.StringsCommonResources.GetString("UnableToFindFileDlg_Content"),
+                    AppManager.GetApplicationByUuid(appUuid).Name, AppManager.GetApplicationByUuid(appUuid).ExecutablePath);
+            await missingExecutableContentDialog.ShowAsync();
+        }
+
+        private void MissingExecutableContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            FrameRoot.Navigate(typeof(UserAppEditor), AppManager.GetApplicationByUuid((string)sender.Tag));
+            NavigationView.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible;
+            NavigationView.IsBackEnabled = true;
         }
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

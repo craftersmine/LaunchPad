@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Common\FileExistsData.cs" />
     <Compile Include="Common\IPCClient.cs" />
+    <Compile Include="Common\MissingFileOrDirectoryInformation.cs" />
     <Compile Include="Common\ProcessExitedInformation.cs" />
     <Compile Include="Common\ProcessManager.cs" />
     <Compile Include="Common\UserApp.cs" />

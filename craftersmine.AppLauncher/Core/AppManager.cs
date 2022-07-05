@@ -53,6 +53,13 @@ namespace craftersmine.AppLauncher.Core
                     var bridgeApp = UserApp.DeserializeFromString(payload);
                     ApplicationEvent?.Invoke(null, new ApplicationEventArgs() { ApplicationEventType = ApplicationEventType.Launched, AppUuid = bridgeApp.Uuid, ExitCode = 0 });
                     break;
+                case "MISSINGFILES":
+                    var missingFilesInfo = MissingFileOrDirectoryInformation.DeserializeFromString(payload);
+                    if (missingFilesInfo.Type == MissingEntityType.Executable)
+                        ApplicationEvent?.Invoke(null, new ApplicationEventArgs() {ApplicationEventType = ApplicationEventType.MissingExecutable, AppUuid = missingFilesInfo.AppUuid, ExitCode = 0});
+                    else if (missingFilesInfo.Type == MissingEntityType.WorkingDirectory)
+                        ApplicationEvent?.Invoke(null, new ApplicationEventArgs() { ApplicationEventType = ApplicationEventType.MissingWorkingDirectory, AppUuid = missingFilesInfo.AppUuid, ExitCode = 0 });
+                    break;
             }
         }
 
@@ -181,11 +188,7 @@ namespace craftersmine.AppLauncher.Core
         Launched,
         Exited,
         LaunchTimedOut,
-        BridgeConnectionClosed
-    }
-
-    public enum AppListSortFlags
-    {
-        FavoritesFirst = 0b00000001
+        MissingExecutable,
+        MissingWorkingDirectory
     }
 }
