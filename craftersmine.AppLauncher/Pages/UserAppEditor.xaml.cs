@@ -208,7 +208,7 @@ namespace craftersmine.AppLauncher.Pages
                 errorMessage.Content = ResourceManagers.StringsUserAppEditorResources.GetString("UnableToSaveApp_Content");
                 errorMessage.Title = ResourceManagers.StringsUserAppEditorResources.GetString("UnableToSaveApp_Title");
                 errorMessage.CloseButtonClick += ErrorMessage_CloseButtonClick;
-                errorMessage.CloseButtonStyle = (Style) Application.Current.Resources["AccentButtonStyle"];
+                errorMessage.DefaultButton = ContentDialogButton.Close;
                 await errorMessage.ShowAsync();
                 return;
             }
@@ -227,7 +227,7 @@ namespace craftersmine.AppLauncher.Pages
                 errorMessage.Content = ResourceManagers.StringsUserAppEditorResources.GetString("UnableToFindDirectoryDlg_Content");
             errorMessage.Title = ResourceManagers.StringsUserAppEditorResources.GetString("UnableToFindExecutableOrDirectoryDlg_Title");
             errorMessage.CloseButtonClick += ErrorMessage_CloseButtonClick;
-            errorMessage.CloseButtonStyle = (Style) Application.Current.Resources["AccentButtonStyle"];
+            errorMessage.DefaultButton = ContentDialogButton.Close;
             await errorMessage.ShowAsync();
         }
 
