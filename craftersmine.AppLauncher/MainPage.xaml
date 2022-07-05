@@ -34,7 +34,7 @@
                        CloseButtonClick="appStatusDialog_CloseButtonClick">
             <StackPanel Orientation="Horizontal" Height="48">
                 <custom:ProgressRing Margin="0 0 16 0"/>
-                <TextBlock Text="" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="AppStatusTextBlock"/>
+                <TextBlock Text="" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="AppStatusTextBlock" TextWrapping="WrapWholeWords" MaxWidth="250"/>
             </StackPanel>
         </ContentDialog>
 
