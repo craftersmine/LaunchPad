@@ -159,7 +159,7 @@
   <data name="None" xml:space="preserve">
     <value>None</value>
   </data>
-  <data name="Ok1" xml:space="preserve">
+  <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Yes" xml:space="preserve">
