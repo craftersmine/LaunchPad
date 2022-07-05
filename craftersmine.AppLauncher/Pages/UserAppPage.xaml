@@ -13,7 +13,7 @@
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <Grid Height="300" Width="200" Background="{ThemeResource SystemControlBackgroundBaseLowRevealBackgroundBrush}" CornerRadius="5" Margin="0 40 0 0" HorizontalAlignment="Left">
-                        <Image Height="300" Width="200" Source="{x:Bind SelectedApp.Image}"/>
+                        <Image Height="300" Width="200" Source="{x:Bind SelectedApp.Image}" ImageFailed="Image_OnImageFailed"/>
                     </Grid>
                     <custom:SplitButton VerticalAlignment="Top" Margin="0 10 0 0" Width="200" x:Name="LaunchButton" Click="LaunchButton_OnClick"> 
                         <StackPanel Orientation="Horizontal">

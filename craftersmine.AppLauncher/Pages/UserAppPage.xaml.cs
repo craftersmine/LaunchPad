@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using SplitButton = Microsoft.UI.Xaml.Controls.SplitButton;
 using SplitButtonClickEventArgs = Microsoft.UI.Xaml.Controls.SplitButtonClickEventArgs;
@@ -103,6 +104,11 @@ namespace craftersmine.AppLauncher.Pages
             frame.BackStack.Clear();
             navView.IsBackEnabled = false;
             navView.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed;
+        }
+
+        private void Image_OnImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            (sender as Image).Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/NoCover.png"));
         }
     }
 }
