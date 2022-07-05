@@ -49,14 +49,14 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="App:" Margin="0 0 10 0" Grid.Column="0" Grid.Row="0" x:Uid="/UserAppInfoPage/InfoExpander_Executable"/>
+                        <TextBlock Text="App:" Margin="0 0 10 0" Grid.Column="0" Grid.Row="0" x:Uid="/UserAppInfoPage/InfoExpander_Executable" MaxWidth="150" TextWrapping="WrapWholeWords"/>
                         <TextBlock Text="{x:Bind SelectedApp.ExecutablePath}" Grid.Column="1" Grid.Row="0" TextWrapping="WrapWholeWords"/>
-                        <TextBlock Text="Working Directory: " Grid.Row="1" Margin="0 0 10 0" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_WorkingDirectory"/>
+                        <TextBlock Text="Working Directory: " Grid.Row="1" Margin="0 0 10 0" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_WorkingDirectory" MaxWidth="150" TextWrapping="WrapWholeWords"/>
                         <TextBlock Text="{x:Bind WorkingDir}" Grid.Row="1" Grid.Column="1" TextWrapping="WrapWholeWords"/>
-                        <TextBlock Text="Launch Arguments:" Grid.Row="2" Margin="0 0 10 0" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_LaunchArguments"/>
+                        <TextBlock Text="Launch Arguments:" Grid.Row="2" Margin="0 0 10 0" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_LaunchArguments" MaxWidth="150" TextWrapping="WrapWholeWords"/>
                         <TextBlock Text="{x:Bind LaunchArguments}" Grid.Row="2" Grid.Column="1" TextWrapping="WrapWholeWords"/>
-                        <TextBlock Text="Run as Administrator:" Margin="0 0 10 0" Grid.Row="3" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_RunAsAdmin"/>
-                        <TextBlock Text="{x:Bind RunAsAdmin}" Grid.Row="3" Grid.Column="1" TextWrapping="WrapWholeWords"/>
+                        <TextBlock Text="Run as Administrator:" Margin="0 0 10 0" Grid.Row="3" Grid.Column="0" x:Uid="/UserAppInfoPage/InfoExpander_RunAsAdmin" MaxWidth="150" TextWrapping="WrapWholeWords"/>
+                        <TextBlock Text="{x:Bind RunAsAdmin}" Grid.Row="3" Grid.Column="1" TextWrapping="WrapWholeWords" VerticalAlignment="Bottom"/>
                     </Grid>
                 </custom:Expander>
                 
