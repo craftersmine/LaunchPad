@@ -184,7 +184,7 @@
     <value>Добавить приложение в библиотеку</value>
   </data>
   <data name="PageHeaderTextBlock_Edit.Text" xml:space="preserve">
-    <value>Редактирование приложение</value>
+    <value>Редактирование приложения</value>
   </data>
   <data name="RunAsAdminCheckBoxText.Text" xml:space="preserve">
     <value>Запускать приложение от имени администратора</value>
