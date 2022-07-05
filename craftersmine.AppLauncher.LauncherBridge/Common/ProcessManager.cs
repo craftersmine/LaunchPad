@@ -123,7 +123,7 @@ namespace craftersmine.AppLauncher.LauncherBridgeClient.Common
         {
             try
             {
-                currentProcess.Close();
+                currentProcess.CloseMainWindow();
             }
             catch (Exception e)
             {
