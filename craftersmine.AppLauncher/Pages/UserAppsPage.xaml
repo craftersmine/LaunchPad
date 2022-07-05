@@ -11,6 +11,20 @@
     mc:Ignorable="d">
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="719"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SearchBox.MinWidth" Value="350"/>
+                        <Setter Target="SearchBox.MaxWidth" Value="350"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition/>
@@ -23,7 +37,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <AutoSuggestBox Grid.Column="1" QueryIcon="Find" PlaceholderText="Search for your apps" HorizontalAlignment="Center" 
-                            MinWidth="250" MaxWidth="600" Width="Auto" Height="32" 
+                            MaxWidth="280" Width="Auto" MinWidth="280" Height="32" 
                             ItemsSource="{x:Bind core:AppManager.Apps}" 
                             x:Uid="/UserApps/SearchBox" x:Name="SearchBox" 
                             QuerySubmitted="searchBox_QuerySubmitted" TextChanged="searchBox_TextChanged"/>
