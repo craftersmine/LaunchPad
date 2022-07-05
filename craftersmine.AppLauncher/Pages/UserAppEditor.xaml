@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     
     <Grid>
-        <ScrollViewer Margin="48 48 0 0" HorizontalContentAlignment="Stretch">
+        <ScrollViewer Margin="48 48 0 0" HorizontalContentAlignment="Stretch" Padding="0 0 18 0">
             <StackPanel HorizontalAlignment="Left">
                 <TextBlock Text="Edit an app" Style="{ThemeResource TitleTextBlockStyle}" 
                            x:Name="PageHeaderTextBlock" x:Uid="/UserAppEditor/PageHeaderTextBlock_Edit"/>
