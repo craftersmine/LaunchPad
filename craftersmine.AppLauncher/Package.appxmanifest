@@ -12,7 +12,7 @@
   <Identity
     Name="craftersmine.AppLauncher"
     Publisher="CN=craftersmine"
-    Version="1.0.0.0" />
+    Version="1.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="7bf8e54a-a474-470d-b3ed-3889a93dc0ef" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
