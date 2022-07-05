@@ -54,11 +54,15 @@ namespace craftersmine.AppLauncher.Pages
 
         private async void gridView_context_deleteApp_Click(object sender, RoutedEventArgs e)
         {
-            var item = (e.OriginalSource as FrameworkElement).DataContext as UserApp;
-            AppManager.Apps.Remove(item);
-            await AppManager.RequestListSave();
-            //appList.ItemsSource = null;
-            //appList.ItemsSource = AppManager.Apps;
+            ContentDialog removeDlg = new ContentDialog();
+            removeDlg.Title = ResourceManagers.StringsUserAppInfoResources.GetString("RemoveDialog_Title");
+            removeDlg.Content = ResourceManagers.StringsUserAppInfoResources.GetString("RemoveDialog_Content");
+            removeDlg.PrimaryButtonText = ResourceManagers.StringsCommonResources.GetString("Yes");
+            removeDlg.CloseButtonText = ResourceManagers.StringsCommonResources.GetString("No");
+            removeDlg.DefaultButton = ContentDialogButton.Close;
+            removeDlg.PrimaryButtonClick += RemoveDlg_PrimaryButtonClick;
+            removeDlg.Tag = (e.OriginalSource as FrameworkElement).DataContext as UserApp;
+            await removeDlg.ShowAsync();
         }
 
         private void appList_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
@@ -170,6 +174,13 @@ namespace craftersmine.AppLauncher.Pages
 
         private async void AppList_OnDragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
         {
+            await AppManager.RequestListSave();
+        }
+
+        private async void RemoveDlg_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            var item = sender.Tag as UserApp;
+            AppManager.Apps.Remove(item);
             await AppManager.RequestListSave();
         }
     }
