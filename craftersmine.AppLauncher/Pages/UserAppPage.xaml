@@ -9,7 +9,8 @@
     mc:Ignorable="d">
 
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto" Margin="48 48 0 0">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto" Margin="48 48 0 0"
+                      Padding="0 0 18 0">
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <Grid Height="300" Width="200" Background="{ThemeResource SystemControlBackgroundBaseLowRevealBackgroundBrush}" CornerRadius="5" Margin="0 40 0 0" HorizontalAlignment="Left">
