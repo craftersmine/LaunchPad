@@ -31,7 +31,7 @@
                 <TextBlock Text="App name" Margin="0 40 0 0"
                            x:Uid="/UserAppEditor/AppInfoNameLabel"/>
                 <TextBox PlaceholderText="Enter an app name" Margin="0 10 0 0" x:Name="AppNameTextBox" TextChanged="appNameTextbox_TextChanged"
-                         x:Uid="/UserAppEditor/AppInfoNameTextBox"/>
+                         x:Uid="/UserAppEditor/AppInfoNameTextBox" HorizontalAlignment="Stretch"/>
 
                 <TextBlock Text="App description" Margin="0 18 0 0"
                            x:Uid="/UserAppEditor/AppInfoDescriptionLabel"/>
