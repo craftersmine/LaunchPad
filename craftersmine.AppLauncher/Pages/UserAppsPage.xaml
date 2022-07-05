@@ -42,7 +42,7 @@
                             x:Uid="/UserApps/SearchBox" x:Name="SearchBox" 
                             QuerySubmitted="searchBox_QuerySubmitted" TextChanged="searchBox_TextChanged"/>
 
-            <CommandBar Grid.Column="2" DefaultLabelPosition="Right" MaxWidth="300" HorizontalAlignment="Right">
+            <CommandBar Grid.Column="2" DefaultLabelPosition="Right" MinWidth="50" MaxWidth="200" Width="Auto" HorizontalAlignment="Right" Margin="-30 0 0 0" OverflowButtonVisibility="Collapsed">
                 <AppBarButton Icon="Add" Label="Add"
                               x:Name="ButtonAddItem" x:Uid="/UserApps/CommandBar_AddButton"
                               Click="button_addItem_Click">
