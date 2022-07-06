@@ -139,7 +139,7 @@ namespace craftersmine.AppLauncher.Core
                 Language = (string) ApplicationData.Current.LocalSettings.Values["Language"];
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 CreateDefault();
             }
