@@ -9,8 +9,23 @@
     mc:Ignorable="d">
 
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto" Margin="48 48 0 0"
-                      Padding="0 0 18 0">
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="{x:Bind SelectedApp.Image}" Stretch="None" Opacity="0.15" AlignmentX="Right" AlignmentY="Bottom">
+                <ImageBrush.RelativeTransform>
+                    <CompositeTransform ScaleY="1.1" ScaleX="1.1" CenterX="1" CenterY="1" TranslateX="0" TranslateY="0"/>
+                </ImageBrush.RelativeTransform>
+            </ImageBrush>
+        </Grid.Background>-->
+        <custom:ParallaxView VerticalAlignment="Bottom" IsVerticalShiftClamped="True" Source="{Binding ElementName=PageScrollViewer}" HorizontalAlignment="Stretch" VerticalShift="30" Margin="20">
+            <Image Source="{x:Bind SelectedApp.Image}" Opacity="0.2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="900" Height="1200"/>
+        </custom:ParallaxView>
+        <!--Margin="48 48 0 0"-->
+        <!-- Padding="0 0 18 0" -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto" 
+                      Padding="48 48 18 0" x:Name="PageScrollViewer">
+            <ScrollViewer.Background>
+                <AcrylicBrush TintColor="{ThemeResource SystemAltMediumColor}" TintOpacity="1"/>
+            </ScrollViewer.Background>
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <Grid Height="300" Width="200" Background="{ThemeResource SystemControlBackgroundBaseLowRevealBackgroundBrush}" CornerRadius="5" Margin="0 40 0 0" HorizontalAlignment="Left">
