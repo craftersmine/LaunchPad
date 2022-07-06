@@ -84,10 +84,15 @@ namespace craftersmine.AppLauncher.Pages
             coverFilePicker.CommitButtonText = ResourceManagers.StringsUserAppEditorResources.GetString("ImagePicker_SelectImageButton");
             StorageFile image = await coverFilePicker.PickSingleFileAsync();
 
-            if (image is null)
+            ApplyCover(image);
+        }
+
+        public async void ApplyCover(StorageFile selectedFile)
+        {
+            if (selectedFile is null)
                 return;
 
-            if (image.ContentType.Contains("image"))
+            if (selectedFile.ContentType.Contains("image"))
             {
                 try
                 {
@@ -110,8 +115,8 @@ namespace craftersmine.AppLauncher.Pages
                 }
 
                 editingApp.Uuid = Guid.NewGuid().ToString();
-                var cover = await coversDir.CreateFileAsync(editingApp.Uuid + image.FileType, CreationCollisionOption.ReplaceExisting);
-                await image.CopyAndReplaceAsync(cover);
+                var cover = await coversDir.CreateFileAsync(editingApp.Uuid + selectedFile.FileType, CreationCollisionOption.ReplaceExisting);
+                await selectedFile.CopyAndReplaceAsync(cover);
 
                 editingApp.ImagePath = cover.Path;
                 AppCoverImage.Source = editingApp.Image;
