@@ -154,6 +154,15 @@
       <DependentUpon>UserAppsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SteamGridDb\Api\SteamGridDbGridsResponse.cs" />
+    <Compile Include="SteamGridDb\Api\SteamGridDbObject.cs" />
+    <Compile Include="SteamGridDb\Api\SteamGridDbError.cs" />
+    <Compile Include="SteamGridDb\RequestParameters.cs" />
+    <Compile Include="SteamGridDb\SteamAuthor.cs" />
+    <Compile Include="SteamGridDb\SteamGridDb.cs" />
+    <Compile Include="SteamGridDb\Api\SteamGridDbSearchResponse.cs" />
+    <Compile Include="SteamGridDb\SteamGridDbGame.cs" />
+    <Compile Include="SteamGridDb\SteamGridDbGridCover.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -247,6 +256,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.8.0-prerelease.220601001</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="SharmIPC">
       <Version>1.18.0</Version>
