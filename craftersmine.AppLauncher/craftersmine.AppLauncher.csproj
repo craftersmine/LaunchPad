@@ -132,6 +132,7 @@
     <Compile Include="Common\FileExistsData.cs" />
     <Compile Include="Common\IPCServer.cs" />
     <Compile Include="Core\AppManager.cs" />
+    <Compile Include="Core\LocalCoverStorage.cs" />
     <Compile Include="Core\MissingFileOrDirectoryInformation.cs" />
     <Compile Include="Core\ProcessExitedInformation.cs" />
     <Compile Include="Core\ResourceManagers.cs" />
