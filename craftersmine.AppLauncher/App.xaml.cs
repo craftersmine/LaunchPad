@@ -47,6 +47,8 @@ namespace craftersmine.AppLauncher
             this.Suspending += OnSuspending;
 
             new SteamGridDb.SteamGridDb();
+            new LocalCoverStorage();
+            LocalCoverStorage.Instance.LoadCoversData();
             AppManager.LoadAppList();
         }
 
