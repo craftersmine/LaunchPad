@@ -135,8 +135,8 @@ namespace craftersmine.AppLauncher
                 case "settingsitem":
                     FrameRoot.Navigate(typeof(SettingsPage), null, new EntranceNavigationTransitionInfo());
                     break;
-                case "menuallapps":
-                    FrameRoot.Navigate(typeof(UserAppsPage));
+                case "steamgriddblibrary":
+                    FrameRoot.Navigate(typeof(SteamGridDbSearchPage));
                     break;
                 default:
                     break;

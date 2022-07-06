@@ -42,11 +42,7 @@
                            BackRequested="NavigationView_BackRequested" IsBackEnabled="False" IsBackButtonVisible="Collapsed" Loaded="navigationView_Loaded">
             <custom:NavigationView.MenuItems>
                 <custom:NavigationViewItem IsSelected="True" x:Uid="Main_NavMenu_Item_Home" x:Name="MenuHome" Icon="Home"/>
-                <custom:NavigationViewItem x:Uid="Main_NavMenu_Item_AllApps" x:Name="MenuAllApps" Content="All Apps" Visibility="Collapsed">
-                    <custom:NavigationViewItem.Icon>
-                        <PathIcon Data="{StaticResource IconAppList}"/>
-                    </custom:NavigationViewItem.Icon>
-                </custom:NavigationViewItem>
+                <custom:NavigationViewItem x:Uid="Main_NavMenu_Item_SteamGridDbLibrary" x:Name="SteamGridDbLibrary" Content="SteamGridDB cover database" Icon="BrowsePhotos"/>
             </custom:NavigationView.MenuItems>
             <Frame x:Name="FrameRoot"/>
         </custom:NavigationView>
