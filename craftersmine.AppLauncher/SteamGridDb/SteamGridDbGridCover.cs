@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -43,5 +46,28 @@ namespace craftersmine.AppLauncher.SteamGridDb
         public int Downwotes { get; set; }
         [JsonProperty("author")]
         public SteamAuthor Author { get; set; }
+
+        public async Task DownloadToAsync(string fullPath)
+        {
+            await Task.Run(async () => 
+            {
+                try
+                {
+                    using (HttpClient client = new HttpClient())
+                    {
+                        var data = await client.GetByteArrayAsync(FullImageUrl);
+                        using (FileStream file = new FileStream(fullPath, FileMode.Create, FileAccess.ReadWrite))
+                        {
+                            await file.WriteAsync(data, 0, data.Length);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                    throw;
+                }
+            });
+        }
     }
 }
