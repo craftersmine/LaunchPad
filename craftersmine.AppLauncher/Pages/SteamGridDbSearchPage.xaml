@@ -7,8 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:steamGridDb="using:craftersmine.AppLauncher.SteamGridDb"
     xmlns:custom="using:Microsoft.UI.Xaml.Controls"
+    xmlns:core="using:craftersmine.AppLauncher.Core"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <core:NegateBooleanConverter x:Key="NegateBoolConverter"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -27,7 +31,7 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <GridView x:Name="CoversGridView" Padding="18" SelectionMode="None" IsItemClickEnabled="True">
+            <GridView x:Name="CoversGridView" Padding="18" SelectionMode="None" IsItemClickEnabled="True" ContainerContentChanging="CoversGridView_OnContainerContentChanging">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="steamGridDb:SteamGridDbGridCover">
                         <Grid Width="200" Height="300" PointerEntered="GridElement_PointerEntered" PointerExited="GridElement_PointerExited">
@@ -41,32 +45,30 @@
                                 <StackPanel.Background>
                                     <AcrylicBrush  BackgroundSource="Backdrop" TintOpacity="0.3" TintColor="{ThemeResource SystemAltHighColor}"/>
                                 </StackPanel.Background>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 18" HorizontalAlignment="Stretch">
-                                        <Grid Width="40" Height="40" CornerRadius="5" Margin="0 0 10 0">
-                                            <custom:ProgressRing x:Name="AvatarAnimationRing" IsActive="True" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            <Image Tag="{Binding ElementName=AvatarAnimationRing}" ImageFailed="AvatarOrCoverImageFailed" ImageOpened="AvatarOrCoverImageOpened">
-                                                <Image.Source>
-                                                    <BitmapImage UriSource="{x:Bind Author.AvatarUrl}"/>
-                                                </Image.Source>
-                                            </Image>
-                                        </Grid>
-                                        <HyperlinkButton Content="{x:Bind Author.Name}" VerticalAlignment="Center" MaxWidth="130" Padding="2" Tag="{x:Bind Author.Steam64Id}" Click="AuthorLinkClicked"/>
-                                    </StackPanel>
-
-                                    <Grid Padding="0 0 -5 0">
-
-                                        <Button HorizontalAlignment="Stretch" Grid.Column="0" Margin="0 0 5 0" Style="{ThemeResource AccentButtonStyle}" Click="DownloadCoverButtonClick">
-                                            <SymbolIcon Symbol="Download"/>
-                                        </Button>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 18" HorizontalAlignment="Stretch">
+                                    <Grid Width="40" Height="40" CornerRadius="5" Margin="0 0 10 0">
+                                        <custom:ProgressRing x:Name="AvatarAnimationRing" IsActive="True" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <Image Tag="{Binding ElementName=AvatarAnimationRing}" ImageFailed="AvatarOrCoverImageFailed" ImageOpened="AvatarOrCoverImageOpened">
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{x:Bind Author.AvatarUrl}"/>
+                                            </Image.Source>
+                                        </Image>
                                     </Grid>
+                                    <HyperlinkButton Content="{x:Bind Author.Name}" VerticalAlignment="Center" MaxWidth="130" Padding="2" Tag="{x:Bind Author.Steam64Id}" Click="AuthorLinkClicked"/>
                                 </StackPanel>
+
+                                <Grid Padding="0 0 -5 0">
+                                    <Button HorizontalAlignment="Stretch" Grid.Column="0" Margin="0 0 5 0" Style="{ThemeResource AccentButtonStyle}" Click="DownloadCoverButtonClick" x:Name="DownloadButton">
+                                        <SymbolIcon Symbol="Download"/>
+                                    </Button>
+                                </Grid>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
 
+            <custom:ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="LoaderRing" Width="64" Height="64" Visibility="Collapsed"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="GridViewEmptyListLabel">
                 <TextBlock Text="Unable to find covers." VerticalAlignment="Center" Margin="0 0 10 0" x:Name="NoResultsLabel"/>
                 <HyperlinkButton Content="Refresh" Padding="3" Click="RefreshListClick" x:Name="RefreshLink"/>

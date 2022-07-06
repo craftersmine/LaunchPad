@@ -15,22 +15,19 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using craftersmine.AppLauncher.Core;
 using craftersmine.AppLauncher.SteamGridDb;
 using craftersmine.AppLauncher.SteamGridDb.Api;
 using ProgressRing = Microsoft.UI.Xaml.Controls.ProgressRing;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace craftersmine.AppLauncher.Pages
 {
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
     public sealed partial class SteamGridDbSearchPage : Page
     {
         private DispatcherTimer searchBoxTimer;
         private const double SearchDelaySeconds = 2;
         private SteamGridDbGame lastSelectedGame = null;
+        private bool isLocalStorageUsed;
 
         public SteamGridDbSearchPage()
         {
@@ -40,8 +37,18 @@ namespace craftersmine.AppLauncher.Pages
             searchBoxTimer.Stop();
             searchBoxTimer.Tick += SearchBoxTimer_Tick;
             GridViewEmptyListLabel.Visibility = Visibility.Collapsed;
+            LoaderRing.Visibility = Visibility.Visible;
 
-            // TODO: Load local stored library
+            isLocalStorageUsed = true; 
+            if (LocalCoverStorage.Instance.LocalCovers.Count == 0)
+            {
+                NoResultsLabel.Text = "No downloaded covers found! Try searching for game and downloading a couple.";
+                RefreshLink.Visibility = Visibility.Collapsed;
+                GridViewEmptyListLabel.Visibility = Visibility.Visible;
+                LoaderRing.Visibility = Visibility.Collapsed;
+            }
+            CoversGridView.ItemsSource = LocalCoverStorage.Instance.LocalCovers;
+            LoaderRing.Visibility = Visibility.Collapsed;
         }
 
         private async void SearchBoxTimer_Tick(object sender, object e)
@@ -79,13 +86,22 @@ namespace craftersmine.AppLauncher.Pages
                 SearchBox.ItemsSource = null;
                 searchBoxTimer.Stop();
 
-                // TODO: Load local stored library
+                isLocalStorageUsed = true;
+                CoversGridView.ItemsSource = LocalCoverStorage.Instance.LocalCovers;
                 GridViewEmptyListLabel.Visibility = Visibility.Collapsed;
+                if (LocalCoverStorage.Instance.LocalCovers.Count == 0)
+                {
+                    NoResultsLabel.Text = "No downloaded covers found! Try searching for game and downloading a couple.";
+                    RefreshLink.Visibility = Visibility.Collapsed;
+                    GridViewEmptyListLabel.Visibility = Visibility.Visible;
+                    LoaderRing.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
         private async void LoadGameCovers(SteamGridDbGame game)
         {
+            LoaderRing.Visibility = Visibility.Visible;
             NoResultsLabel.Text = "Unable to retrieve covers for " + lastSelectedGame.Name + ".";
             GridViewEmptyListLabel.Visibility = Visibility.Collapsed;
             lastSelectedGame = game;
@@ -95,6 +111,8 @@ namespace craftersmine.AppLauncher.Pages
             {
                 NoResultsLabel.Text = "Unable to retrieve covers for \"" + lastSelectedGame.Name + "\".";
                 GridViewEmptyListLabel.Visibility = Visibility.Visible;
+                RefreshLink.Visibility = Visibility.Visible;
+                LoaderRing.Visibility = Visibility.Collapsed;
                 return;
             }
 
@@ -102,9 +120,13 @@ namespace craftersmine.AppLauncher.Pages
             {
                 NoResultsLabel.Text = "No results found for \"" + lastSelectedGame.Name + "\"";
                 GridViewEmptyListLabel.Visibility = Visibility.Visible;
+                RefreshLink.Visibility = Visibility.Visible;
+                LoaderRing.Visibility = Visibility.Collapsed;
                 return;
             }
 
+            LoaderRing.Visibility = Visibility.Collapsed;
+            isLocalStorageUsed = false;
             CoversGridView.ItemsSource = gridsResults.Covers;
         }
 
@@ -116,6 +138,7 @@ namespace craftersmine.AppLauncher.Pages
             {
                 if (args.ChosenSuggestion is SteamGridDbGame)
                 {
+                    CoversGridView.ItemsSource = null;
                     lastSelectedGame = args.ChosenSuggestion as SteamGridDbGame;
                     LoadGameCovers(args.ChosenSuggestion as SteamGridDbGame);
                     return;
@@ -160,14 +183,69 @@ namespace craftersmine.AppLauncher.Pages
             await Launcher.LaunchUriAsync(new Uri("https://steamcommunity.com/profiles/" + authorSteamId));
         }
 
-        private void DownloadCoverButtonClick(object sender, RoutedEventArgs e)
+        private async void DownloadCoverButtonClick(object sender, RoutedEventArgs e)
         {
-            
+            var button = sender as Button;
+            if (isLocalStorageUsed)
+            {
+                await LocalCoverStorage.Instance.RemoveCoverById((button.DataContext as SteamGridDbGridCover).Id);
+
+                return;
+            }
+
+            button.IsEnabled = false;
+            button.Content = new ProgressRing()
+            {
+                Height = 20,
+                Width = 20,
+                IsActive = true,
+                Foreground = (Brush) Application.Current.Resources["AppBarBackgroundThemeBrush"]
+            };
+            var saved = await LocalCoverStorage.Instance.DownloadCover(button.DataContext as SteamGridDbGridCover);
+            if (saved)
+            {
+                button.Content = new SymbolIcon(Symbol.Accept);
+            }
+            else
+            {
+                button.IsEnabled = true;
+                button.Content = new SymbolIcon(Symbol.Download);
+            }
         }
 
         private void AvatarOrCoverImageOpened(object sender, RoutedEventArgs e)
         {
             ((sender as Image).Tag as ProgressRing).Visibility = Visibility.Collapsed;
+        }
+
+        private void CoversGridView_OnContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+        {
+
+            if (isLocalStorageUsed && LocalCoverStorage.Instance.LocalCovers.Count == 0)
+            {
+                NoResultsLabel.Text = "No downloaded covers found! Try searching for game and downloading a couple.";
+                RefreshLink.Visibility = Visibility.Collapsed;
+                GridViewEmptyListLabel.Visibility = Visibility.Visible;
+            }
+
+            if (args.ItemContainer.ContentTemplateRoot is null)
+                return;
+            
+            var downloadButton = 
+                (((args.ItemContainer.ContentTemplateRoot as Grid).Children.FirstOrDefault(i => i is StackPanel) as StackPanel)
+                .Children.FirstOrDefault(i => i is Grid) as Grid)
+                .Children.FirstOrDefault(i=> i is Button) as Button;
+
+            if (isLocalStorageUsed)
+            {
+                downloadButton.Content = new SymbolIcon(Symbol.Delete);
+                downloadButton.Tag = args.Item;
+            }
+            else
+            {
+                downloadButton.Tag = null;
+                downloadButton.Content = new SymbolIcon(Symbol.Download);
+            }
         }
     }
 }
