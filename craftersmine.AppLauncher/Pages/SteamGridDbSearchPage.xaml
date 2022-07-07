@@ -10,9 +10,6 @@
     xmlns:core="using:craftersmine.AppLauncher.Core"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <core:NegateBooleanConverter x:Key="NegateBoolConverter"/>
-    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
