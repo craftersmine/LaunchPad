@@ -51,7 +51,7 @@ namespace craftersmine.AppLauncher.Pages
             LoaderRing.Visibility = Visibility.Collapsed;
         }
 
-        private async void SearchBoxTimer_Tick(object sender, object e)
+        private void SearchBoxTimer_Tick(object sender, object e)
         {
             searchBoxTimer.Stop();
             searchBoxTimer.Interval = TimeSpan.FromSeconds(SearchDelaySeconds);
