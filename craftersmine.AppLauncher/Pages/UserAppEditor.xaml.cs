@@ -20,6 +20,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using craftersmine.AppLauncher.Common;
+using craftersmine.AppLauncher.SteamGridDb;
+using SplitButton = Microsoft.UI.Xaml.Controls.SplitButton;
+using SplitButtonClickEventArgs = Microsoft.UI.Xaml.Controls.SplitButtonClickEventArgs;
 
 namespace craftersmine.AppLauncher.Pages
 {
@@ -31,6 +34,17 @@ namespace craftersmine.AppLauncher.Pages
         public UserAppEditor()
         {
             this.InitializeComponent();
+            SelectCoverFromLibraryButton.IsEnabled = false;
+            if (LocalCoverStorage.Instance.LocalCovers.Count == 0)
+            {
+                NoCoversLabel.Visibility = Visibility.Visible;
+                CoversLibrary.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                NoCoversLabel.Visibility = Visibility.Collapsed;
+                CoversLibrary.Visibility = Visibility.Visible;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -71,7 +85,7 @@ namespace craftersmine.AppLauncher.Pages
             RunAsAdminCheckBox.IsChecked = editingApp.RunAsAdmin;
         }
 
-        private async void editCoverButton_Click(object sender, RoutedEventArgs e)
+        private async void SelectFromFileClick(object sender, RoutedEventArgs e)
         {
             FileOpenPicker coverFilePicker = new FileOpenPicker();
             coverFilePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
@@ -273,6 +287,27 @@ namespace craftersmine.AppLauncher.Pages
                 return;
 
             AppWorkingDirectoryPathTextBox.Text = pickedFolder.Path;
+        }
+
+        private async void ApplySelectedCoverButtonClick(object sender, RoutedEventArgs e)
+        {
+            var selectedCover = CoversLibrary.SelectedItem as SteamGridDbGridCover;
+            ApplyCover(await StorageFile.GetFileFromPathAsync(selectedCover.FullImageUrl));
+            SelectCoverButton.Flyout.Hide();
+        }
+
+        private void FindCoversClick(object sender, RoutedEventArgs e)
+        {
+            var frame = ((Frame)Parent);
+            var navView = ((Microsoft.UI.Xaml.Controls.NavigationView)frame.Parent);
+            frame.Navigate(typeof(SteamGridDbSearchPage));
+            navView.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed;
+            navView.IsBackEnabled = false;
+        }
+
+        private void CoversLibrary_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectCoverFromLibraryButton.IsEnabled = !(CoversLibrary.SelectedItem is null);
         }
     }
 }
