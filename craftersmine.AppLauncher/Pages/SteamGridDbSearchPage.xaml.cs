@@ -246,6 +246,8 @@ namespace craftersmine.AppLauncher.Pages
                 downloadButton.Tag = null;
                 downloadButton.Content = new SymbolIcon(Symbol.Download);
             }
+
+            LoaderRing.Visibility = Visibility.Collapsed;
         }
     }
 }
