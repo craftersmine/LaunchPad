@@ -55,13 +55,32 @@
                                   LostFocus="LockDialogTimeout_OnLostFocus" x:Uid="/Settings/LockDialogTimeoutBox" MaxWidth="450"/>
 
                 <TextBlock Text="About" x:Uid="/Settings/About_Header" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0 40 0 0"/>
-                <StackPanel Margin="0 10 0 50">
-                    <TextBlock IsTextSelectionEnabled="False" x:Uid="/Settings/About_Description" TextWrapping="WrapWholeWords"/>
+                <StackPanel Margin="0 10 0 0">
+                    <TextBlock IsTextSelectionEnabled="False" x:Uid="/Settings/About_Description" TextWrapping="WrapWholeWords" MaxWidth="800" HorizontalAlignment="Left"/>
                     <TextBlock x:Uid="/Settings/About_Version" Margin="0 10 0 0"/>
                     <TextBlock Text="{x:Bind core:VersionManager.Version}" Margin="0 10 0 0" FontWeight="Bold"/>
-
-                    <TextBlock Text="Copyright &#x00A9; craftersmine 2022. Licensed under MIT License" Margin="0 18 0 0"/>
                 </StackPanel>
+                
+                <TextBlock Text="Disclaimer" x:Uid="/Settings/Disclaimer_Header" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0 40 0 0"/>
+                <TextBlock Text="Copyright &#x00A9; craftersmine 2022. Licensed under MIT License" Margin="0 18 0 0"/>
+                <TextBlock Text="By using SteamGridDB search functionality, you are agreeing to SteamGridDB Terms of Service and Privacy Policy. All SteamGridDB Grid Images are intellectual property or represented Author, shown on Grid Card." TextWrapping="WrapWholeWords" Margin="0 10 0 0" MaxWidth="800"/>
+                <Grid Margin="0 0 0 50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <HyperlinkButton Grid.Row="0" Grid.Column="0" Content="GitHub" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad"/>
+                    <HyperlinkButton Grid.Row="0" Grid.Column="1" Content="License" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad/blob/master/LICENSE"/>
+                    <HyperlinkButton Grid.Row="0" Grid.Column="2" Content="Have an Issue?" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad/issues"/>
+                    <HyperlinkButton Grid.Row="1" Grid.Column="0" Content="SteamGridDB TOS" Padding="5" Margin="0 10 10 0" NavigateUri="https://www.steamgriddb.com/terms"/>
+                    <HyperlinkButton Grid.Row="1" Grid.Column="1" Content="SteamGridDB Privacy" Padding="5" Margin="0 10 10 0" NavigateUri="https://www.steamgriddb.com/privacy"/>
+                    <HyperlinkButton Grid.Row="1" Grid.Column="2" Content="SteamGridDB" Padding="5" Margin="0 10 0 0" NavigateUri="https://www.steamgriddb.com/"/>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
     </Grid>
