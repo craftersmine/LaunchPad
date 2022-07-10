@@ -14,5 +14,6 @@ namespace craftersmine.AppLauncher.Core
         public static ResourceLoader StringsUserAppsResources => ResourceLoader.GetForCurrentView("UserApps");
         public static ResourceLoader StringsUserAppInfoResources => ResourceLoader.GetForCurrentView("UserAppInfoPage");
         public static ResourceLoader StringsUserAppEditorResources => ResourceLoader.GetForCurrentView("UserAppEditor");
+        public static ResourceLoader StringsSteamGridDBResources => ResourceLoader.GetForCurrentView("SteamGridDB");
     }
 }
