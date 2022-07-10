@@ -153,6 +153,9 @@
   <data name="Main_NavMenu_Item_Home.Content" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Main_NavMenu_Item_SteamGridDbLibrary.Content" xml:space="preserve">
+    <value>SteamGridDB cover database</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>

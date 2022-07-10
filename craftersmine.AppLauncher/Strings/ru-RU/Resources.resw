@@ -153,6 +153,9 @@
   <data name="Main_NavMenu_Item_Home.Content" xml:space="preserve">
     <value>Главная</value>
   </data>
+  <data name="Main_NavMenu_Item_SteamGridDbLibrary.Content" xml:space="preserve">
+    <value>База данных обложек SteamGridDB</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>Нет</value>
   </data>
