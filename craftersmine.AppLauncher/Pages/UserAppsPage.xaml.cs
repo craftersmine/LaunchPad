@@ -128,7 +128,7 @@ namespace craftersmine.AppLauncher.Pages
 
                 if (suitableItems.Count == 0)
                 {
-                    List<string> noResults = new List<string> { "No results found" };  // TODO: Refactor string in resources for localization
+                    List<string> noResults = new List<string> { ResourceManagers.StringsCommonResources.GetString("NoResults_Text") };  // TODO: Refactor string in resources for localization
                     sender.ItemsSource = noResults;
                     return;
                 }

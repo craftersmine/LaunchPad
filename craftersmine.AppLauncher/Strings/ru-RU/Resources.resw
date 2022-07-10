@@ -159,6 +159,9 @@
   <data name="None" xml:space="preserve">
     <value>Отсутствуют</value>
   </data>
+  <data name="NoResults_Text" xml:space="preserve">
+    <value>Нет результатов</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>ОК</value>
   </data>

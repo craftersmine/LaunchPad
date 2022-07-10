@@ -159,6 +159,9 @@
   <data name="None" xml:space="preserve">
     <value>None</value>
   </data>
+  <data name="NoResults_Text" xml:space="preserve">
+    <value>No results found</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
