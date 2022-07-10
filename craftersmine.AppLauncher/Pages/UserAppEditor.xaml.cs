@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -28,8 +29,9 @@ namespace craftersmine.AppLauncher.Pages
 {
     public sealed partial class UserAppEditor : Page
     {
-        bool isCreatingApp = false;
-        UserApp editingApp = null;
+        bool _isCreatingApp = false;
+        UserApp _editingApp = null;
+        private string _creatingAppExePath = "";
 
         public UserAppEditor()
         {
@@ -50,39 +52,58 @@ namespace craftersmine.AppLauncher.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is null)
-                isCreatingApp = true;
+                _isCreatingApp = true;
 
-            LoadPageData(e.Parameter as UserApp);
+            if (e.Parameter is UserApp)
+            {
+                LoadPageData(e.Parameter as UserApp);
+                return;
+            }
+
+            if (e.Parameter is string)
+            {
+                _creatingAppExePath = e.Parameter as string;
+                _isCreatingApp = true;
+            }
+            LoadPageData(null);
 
             base.OnNavigatedTo(e);
         }
 
         private void LoadPageData(UserApp app)
         {
-            editingApp = app;
+            _editingApp = app;
 
-            if (isCreatingApp)
+            if (_isCreatingApp)
             {
                 PageHeaderTextBlock.Text = ResourceManagers.StringsUserAppEditorResources.GetString("PageHeaderTextBlock_Add");
-                editingApp = new UserApp();
-                AppCoverImage.Source = editingApp.Image;
-                editingApp.Name = ResourceManagers.StringsUserAppEditorResources.GetString("NewAppDefaultName");
-                editingApp.ExecutablePath = "";
-                editingApp.Description = "";
-                editingApp.LaunchArguments = "";
-                editingApp.WorkingDirectory = "";
-                editingApp.RunAsAdmin = false;
-                editingApp.Uuid = Guid.NewGuid().ToString();
+                _editingApp = new UserApp();
+                AppCoverImage.Source = _editingApp.Image;
+                _editingApp.Name = ResourceManagers.StringsUserAppEditorResources.GetString("NewAppDefaultName");
+                _editingApp.ExecutablePath = _creatingAppExePath;
+                _editingApp.Description = "";
+                _editingApp.LaunchArguments = "";
+                _editingApp.WorkingDirectory = "";
+                _editingApp.RunAsAdmin = false;
+                _editingApp.Uuid = Guid.NewGuid().ToString();
                 SaveButton.IsEnabled = false;
             }
 
-            AppCoverImage.Source = editingApp.Image;
-            AppNameTextBox.Text = editingApp.Name;
-            AppExecutablePathTextBox.Text = editingApp.ExecutablePath;
-            AppDescriptionTextBox.Text = editingApp.Description;
-            AppWorkingDirectoryPathTextBox.Text = editingApp.WorkingDirectory;
-            AppLaunchArgumentsTextBox.Text = editingApp.LaunchArguments;
-            RunAsAdminCheckBox.IsChecked = editingApp.RunAsAdmin;
+            AppCoverImage.Source = _editingApp.Image;
+            AppNameTextBox.Text = _editingApp.Name;
+            if (!string.IsNullOrWhiteSpace(_creatingAppExePath))
+                AppNameTextBox.Text = Path.GetFileNameWithoutExtension(_creatingAppExePath);
+            AppExecutablePathTextBox.Text = _editingApp.ExecutablePath;
+            AppDescriptionTextBox.Text = _editingApp.Description;
+            AppWorkingDirectoryPathTextBox.Text = _editingApp.WorkingDirectory;
+            AppLaunchArgumentsTextBox.Text = _editingApp.LaunchArguments;
+            RunAsAdminCheckBox.IsChecked = _editingApp.RunAsAdmin;
+
+            if (!string.IsNullOrWhiteSpace(AppNameTextBox.Text) &&
+                !string.IsNullOrWhiteSpace(AppExecutablePathTextBox.Text))
+            {
+                SaveButton.IsEnabled = true;
+            }
         }
 
         private async void SelectFromFileClick(object sender, RoutedEventArgs e)
@@ -120,7 +141,7 @@ namespace craftersmine.AppLauncher.Pages
                 var coversDir = await ApplicationData.Current.LocalFolder.GetFolderAsync("covers");
                 try
                 {
-                    var oldCover = await coversDir.GetFileAsync(Path.GetFileName(editingApp.ImagePath));
+                    var oldCover = await coversDir.GetFileAsync(Path.GetFileName(_editingApp.ImagePath));
                     await oldCover.DeleteAsync();
                 }
                 catch (Exception)
@@ -128,12 +149,12 @@ namespace craftersmine.AppLauncher.Pages
 
                 }
 
-                editingApp.Uuid = Guid.NewGuid().ToString();
-                var cover = await coversDir.CreateFileAsync(editingApp.Uuid + selectedFile.FileType, CreationCollisionOption.ReplaceExisting);
+                _editingApp.Uuid = Guid.NewGuid().ToString();
+                var cover = await coversDir.CreateFileAsync(_editingApp.Uuid + selectedFile.FileType, CreationCollisionOption.ReplaceExisting);
                 await selectedFile.CopyAndReplaceAsync(cover);
 
-                editingApp.ImagePath = cover.Path;
-                AppCoverImage.Source = editingApp.Image;
+                _editingApp.ImagePath = cover.Path;
+                AppCoverImage.Source = _editingApp.Image;
             }
         }
 
@@ -153,7 +174,7 @@ namespace craftersmine.AppLauncher.Pages
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            editingApp = null;
+            _editingApp = null;
             NavigateBack();
         }
 
@@ -162,10 +183,10 @@ namespace craftersmine.AppLauncher.Pages
             SaveButtonTextBlock.Visibility = Visibility.Collapsed;
             SavingProgressRing.Visibility = Visibility.Visible;
 
-            editingApp.Description = AppDescriptionTextBox.Text;
-            editingApp.Name = AppNameTextBox.Text;
-            editingApp.LaunchArguments = AppLaunchArgumentsTextBox.Text;
-            editingApp.RunAsAdmin = RunAsAdminCheckBox.IsChecked ?? false;
+            _editingApp.Description = AppDescriptionTextBox.Text;
+            _editingApp.Name = AppNameTextBox.Text;
+            _editingApp.LaunchArguments = AppLaunchArgumentsTextBox.Text;
+            _editingApp.RunAsAdmin = RunAsAdminCheckBox.IsChecked ?? false;
 
             FileExistsData filesData;
             if (AppWorkingDirectoryPathTextBox.Text.Length > 0)
@@ -186,7 +207,7 @@ namespace craftersmine.AppLauncher.Pages
                     });
 
             if (filesData.FilesAndDirs.First(f => f.Path == AppExecutablePathTextBox.Text).Exists)
-                editingApp.ExecutablePath = AppExecutablePathTextBox.Text;
+                _editingApp.ExecutablePath = AppExecutablePathTextBox.Text;
             else
             {
                 SaveButtonTextBlock.Visibility = Visibility.Visible;
@@ -198,7 +219,7 @@ namespace craftersmine.AppLauncher.Pages
             if (AppWorkingDirectoryPathTextBox.Text.Length > 0)
             {
                 if (filesData.FilesAndDirs.First(d => d.Path == AppWorkingDirectoryPathTextBox.Text).Exists)
-                    editingApp.WorkingDirectory = AppWorkingDirectoryPathTextBox.Text;
+                    _editingApp.WorkingDirectory = AppWorkingDirectoryPathTextBox.Text;
                 else
                 {
                     SaveButtonTextBlock.Visibility = Visibility.Visible;
@@ -208,15 +229,15 @@ namespace craftersmine.AppLauncher.Pages
                 }
             }
             else
-                editingApp.WorkingDirectory = "";
+                _editingApp.WorkingDirectory = "";
 
-            if (!isCreatingApp)
+            if (!_isCreatingApp)
             {
-                var lastIndex = AppManager.Apps.IndexOf(editingApp);
-                AppManager.Apps.Remove(editingApp);
-                AppManager.Apps.Insert(lastIndex, editingApp);
+                var lastIndex = AppManager.Apps.IndexOf(_editingApp);
+                AppManager.Apps.Remove(_editingApp);
+                AppManager.Apps.Insert(lastIndex, _editingApp);
             }
-            else AppManager.Apps.Add(editingApp);
+            else AppManager.Apps.Add(_editingApp);
 
             var isSaved = await AppManager.RequestListSave();
 
@@ -301,6 +322,8 @@ namespace craftersmine.AppLauncher.Pages
             var frame = ((Frame)Parent);
             var navView = ((Microsoft.UI.Xaml.Controls.NavigationView)frame.Parent);
             frame.Navigate(typeof(SteamGridDbSearchPage));
+            navView.SelectedItem = navView.MenuItems.FirstOrDefault(i =>
+                (i as Microsoft.UI.Xaml.Controls.NavigationViewItem).Name.ToLower().Contains("steamgriddb"));
             navView.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed;
             navView.IsBackEnabled = false;
         }

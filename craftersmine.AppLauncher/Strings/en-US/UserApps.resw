@@ -132,6 +132,15 @@
   <data name="ContextLaunchAppItem.Text" xml:space="preserve">
     <value>Launch</value>
   </data>
+  <data name="DropTipLabel.Text" xml:space="preserve">
+    <value>Drop app executable here to add app in library</value>
+  </data>
+  <data name="FileDropUnsupportedDialog_Text" xml:space="preserve">
+    <value>This file type is unsupported. To add application to a library, drag and drop application executable file (.exe)</value>
+  </data>
+  <data name="FileDropUnsupportedDialog_Title" xml:space="preserve">
+    <value>Unsupported file</value>
+  </data>
   <data name="NoItemsInLibraryTextBlock.Text" xml:space="preserve">
     <value>There is no apps in library.</value>
   </data>

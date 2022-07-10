@@ -132,6 +132,15 @@
   <data name="ContextLaunchAppItem.Text" xml:space="preserve">
     <value>Запустить</value>
   </data>
+  <data name="DropTipLabel.Text" xml:space="preserve">
+    <value>Отпустите исполняемый файл здесь чтобы добавить приложение в библиотеку</value>
+  </data>
+  <data name="FileDropUnsupportedDialog_Text" xml:space="preserve">
+    <value>Данный тип файлов не поддерживается. Чтобы добавить приложение в библиотеку, переместите и отпустите исполняемый файл приложения (".exe" файл)</value>
+  </data>
+  <data name="FileDropUnsupportedDialog_Title" xml:space="preserve">
+    <value>Неподдерживаемый файл</value>
+  </data>
   <data name="NoItemsInLibraryTextBlock.Text" xml:space="preserve">
     <value>Приложения в библиотеке отсутствуют.</value>
   </data>

@@ -67,7 +67,7 @@
             </CommandBar>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" AllowDrop="True" DragEnter="GridDragEnter">
             <GridView ItemsSource="{x:Bind core:AppManager.Apps}" Padding="18" SelectionMode="None" IsRightTapEnabled="True" IsItemClickEnabled="True"
                       ItemClick="appList_ItemClick" ContainerContentChanging="appList_ContainerContentChanging" ReorderMode="Enabled" AllowDrop="True" CanReorderItems="True" CanDragItems="True" DragItemsCompleted="AppList_OnDragItemsCompleted"
                       x:Name="AppList">
@@ -116,6 +116,23 @@
                            x:Uid="/UserApps/NoItemsInLibraryTextBlock"/>
                 <HyperlinkButton Content="Add app to library" Padding="3" Click="button_addItem_Click"
                                  x:Uid="/UserApps/AddItemToLibraryLink"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.RowSpan="2" x:Name="DragAndDropOverlayGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto"  AllowDrop="True" DragLeave="GridDragLeave" Drop="GridDrop" DragOver="GridDragOver"  Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <AcrylicBrush TintColor="{ThemeResource SystemAltMediumLowColor}" TintOpacity="1"/>
+            </Grid.Background>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Width="64">
+                    <SymbolIcon Symbol="Add"/>
+                </Viewbox>
+                <TextBlock Text="Drop app executable here to add app in library" x:Uid="/UserApps/DropTipLabel" MaxWidth="400" TextWrapping="WrapWholeWords" TextAlignment="Center"/>
             </StackPanel>
         </Grid>
     </Grid>

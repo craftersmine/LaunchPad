@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
-
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -182,6 +183,63 @@ namespace craftersmine.AppLauncher.Pages
             var item = sender.Tag as UserApp;
             AppManager.Apps.Remove(item);
             await AppManager.RequestListSave();
+        }
+
+        private async void GridDragEnter(object sender, DragEventArgs e)
+        {
+            DragAndDropOverlayGrid.Visibility = Visibility.Visible;
+        }
+
+        private void GridDragLeave(object sender, DragEventArgs e)
+        {
+            DragAndDropOverlayGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private async void GridDrop(object sender, DragEventArgs e)
+        {
+            DragAndDropOverlayGrid.Visibility = Visibility.Collapsed;
+
+            if (e.DataView.Contains(StandardDataFormats.StorageItems))
+            {
+                var items = await e.DataView.GetStorageItemsAsync();
+                if (items.Any())
+                {
+                    if (items[0].IsOfType(StorageItemTypes.File))
+                    {
+                        var item = items[0] as StorageFile;
+                        if (item.FileType != ".exe")
+                        {
+                            ContentDialog unsupportedFiletypeDlg = new ContentDialog();
+                            unsupportedFiletypeDlg.CloseButtonText =
+                                ResourceManagers.StringsCommonResources.GetString("Ok");
+                            unsupportedFiletypeDlg.Content =
+                                ResourceManagers.StringsUserAppsResources.GetString("FileDropUnsupportedDialog_Text");
+                            unsupportedFiletypeDlg.Title = ResourceManagers.StringsUserAppsResources.GetString("FileDropUnsupportedDialog_Title");
+                            unsupportedFiletypeDlg.DefaultButton = ContentDialogButton.Close;
+                            await unsupportedFiletypeDlg.ShowAsync();
+                        }
+                        else
+                        {
+                            var frame = ((Frame)Parent);
+                            var navView = ((Microsoft.UI.Xaml.Controls.NavigationView)frame.Parent);
+                            frame.Navigate(typeof(UserAppEditor), item.Path);
+                            navView.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible;
+                            navView.IsBackEnabled = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private async void GridDragOver(object sender, DragEventArgs e)
+        {
+            DragAndDropOverlayGrid.AllowDrop = true;
+            AppList.AllowDrop = true;
+
+            e.AcceptedOperation = DataPackageOperation.Link;
+            e.DragUIOverride.Caption =
+                ResourceManagers.StringsUserAppsResources.GetString("AddItemToLibraryLink/Content");
+            e.DragUIOverride.IsCaptionVisible = true; 
         }
     }
 }
