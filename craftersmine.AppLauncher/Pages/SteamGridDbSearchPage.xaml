@@ -10,7 +10,21 @@
     xmlns:core="using:craftersmine.AppLauncher.Core"
     mc:Ignorable="d">
 
+
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="719"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SearchBox.MinWidth" Value="350"/>
+                        <Setter Target="SearchBox.MaxWidth" Value="350"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition/>
@@ -24,7 +38,7 @@
             </Grid.ColumnDefinitions>
             <AutoSuggestBox Grid.Column="1" QueryIcon="Find" PlaceholderText="Search for games on SteamGridDB" HorizontalAlignment="Center" 
                             MaxWidth="280" Width="Auto" MinWidth="280" Height="32" x:Name="SearchBox" 
-                            QuerySubmitted="SearchBox_OnQuerySubmitted" TextChanged="SearchBox_OnTextChanged"/>
+                            QuerySubmitted="SearchBox_OnQuerySubmitted" TextChanged="SearchBox_OnTextChanged" x:Uid="/SteamGridDB/SearchBox"/>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -67,8 +81,8 @@
 
             <custom:ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="LoaderRing" Width="64" Height="64" Visibility="Collapsed"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="GridViewEmptyListLabel">
-                <TextBlock Text="Unable to find covers." VerticalAlignment="Center" Margin="0 0 10 0" x:Name="NoResultsLabel"/>
-                <HyperlinkButton Content="Refresh" Padding="3" Click="RefreshListClick" x:Name="RefreshLink"/>
+                <TextBlock Text="Unable to find covers." x:Uid="/SteamGridDB/ErrorMessage_UnableToFindCovers" VerticalAlignment="Center" Margin="0 0 10 0" x:Name="NoResultsLabel"/>
+                <HyperlinkButton Content="Refresh" Padding="3" x:Uid="/SteamGridDB/RefreshLink" Click="RefreshListClick" x:Name="RefreshLink"/>
             </StackPanel>
         </Grid>
     </Grid>
