@@ -40,7 +40,7 @@
                                     </HyperlinkButton>
                                     <Button Grid.Column="1" Grid.Row="0" Content="Select" HorizontalAlignment="Right" Margin="0 0 10 10" Click="ApplySelectedCoverButtonClick" MaxWidth="150" x:Name="SelectCoverFromLibraryButton"/>
                                     <Button Grid.Column="2" Grid.Row="0" Content="Select from file" HorizontalAlignment="Right" Margin="0 0 0 10" Click="SelectFromFileClick" MaxWidth="150"/>
-                                    <GridView Width="400" HorizontalAlignment="Stretch" Padding="2 0 0 0" x:Name="CoversLibrary" SelectionMode="Single" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" ItemsSource="{x:Bind core:LocalCoverStorage.Instance.LocalCovers}" SelectionChanged="CoversLibrary_OnSelectionChanged">
+                                    <GridView Width="420" HorizontalAlignment="Stretch" Padding="2 0 0 0" x:Name="CoversLibrary" SelectionMode="Single" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" ItemsSource="{x:Bind core:LocalCoverStorage.Instance.LocalCovers}" SelectionChanged="CoversLibrary_OnSelectionChanged">
                                         <GridView.ItemTemplate>
                                             <DataTemplate x:DataType="steamGridDb:SteamGridDbGridCover">
                                                 <Grid Width="100" Height="150">
@@ -72,13 +72,13 @@
                 <TextBlock Text="App description" Margin="0 18 0 0"
                            x:Uid="/UserAppEditor/AppInfoDescriptionLabel"/>
                 <TextBox PlaceholderText="(Optional) Enter an app description" Margin="0 10 0 0" AcceptsReturn="True" TextWrapping="Wrap" Height="200"
-                         x:Name="AppDescriptionTextBox" x:Uid="/UserAppEditor/AppInfoDescriptionTextBox" MinWidth="400" MaxWidth="500" HorizontalAlignment="Left" />
+                         x:Name="AppDescriptionTextBox" x:Uid="/UserAppEditor/AppInfoDescriptionTextBox" Width="600" HorizontalAlignment="Left" />
 
                 <TextBlock Text="App execution information" Margin="0 40 0 0" Style="{ThemeResource SubtitleTextBlockStyle}"
                            x:Uid="/UserAppEditor/AppExecutionInfoHeader"/>
                 <TextBlock Text="App executable path" Margin="0 40 0 0"
                            x:Uid="/UserAppEditor/AppExecutableLabel"/>
-                <Grid  Margin="0 10 0 0">
+                <Grid  Margin="0 10 0 0" Width="600">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
