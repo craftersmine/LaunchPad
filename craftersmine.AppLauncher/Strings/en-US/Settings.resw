@@ -142,6 +142,30 @@ Save failed!</value>
   <data name="AppListSaveError_Title" xml:space="preserve">
     <value>Error while saving old list</value>
   </data>
+  <data name="Disclaimer_Header.Text" xml:space="preserve">
+    <value>Disclaimer</value>
+  </data>
+  <data name="Disclaimer_Link_Github.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="Disclaimer_Link_Issues.Content" xml:space="preserve">
+    <value>Have an Issue?</value>
+  </data>
+  <data name="Disclaimer_Link_License.Content" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="Disclaimer_Link_SGDB.Content" xml:space="preserve">
+    <value>SteamGridDB</value>
+  </data>
+  <data name="Disclaimer_Link_SGDBPrivacy.Content" xml:space="preserve">
+    <value>SteamGridDB Privacy</value>
+  </data>
+  <data name="Disclaimer_Link_SGDBTos.Content" xml:space="preserve">
+    <value>SteamGridDB ToS</value>
+  </data>
+  <data name="Disclaimer_Text.Text" xml:space="preserve">
+    <value>By using SteamGridDB search functionality, you are agreeing to SteamGridDB Terms of Service and Privacy Policy. All SteamGridDB Grid Images are intellectual property of represented Author, shown on Grid Card.</value>
+  </data>
   <data name="ErrorBar.Message" xml:space="preserve">
     <value>There was an issue with loading application list from saved file. This could be caused by application crash, incorrect system shutdown or failed write operation while trying to save application list file. All saved app entries in app was lost due to file become unreadable to app. You can still recover old file to try restore app list manually.</value>
   </data>

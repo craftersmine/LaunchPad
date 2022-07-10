@@ -142,6 +142,30 @@
   <data name="AppListSaveError_Title" xml:space="preserve">
     <value>Ошибка при сохранении списка приложений</value>
   </data>
+  <data name="Disclaimer_Header.Text" xml:space="preserve">
+    <value>Дисклеймер</value>
+  </data>
+  <data name="Disclaimer_Link_Github.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="Disclaimer_Link_Issues.Content" xml:space="preserve">
+    <value>Возникла проблема?</value>
+  </data>
+  <data name="Disclaimer_Link_License.Content" xml:space="preserve">
+    <value>Лицензионное соглашение</value>
+  </data>
+  <data name="Disclaimer_Link_SGDB.Content" xml:space="preserve">
+    <value>SteamGridDB</value>
+  </data>
+  <data name="Disclaimer_Link_SGDBPrivacy.Content" xml:space="preserve">
+    <value>Политика конфиденциальности SteamGridDB</value>
+  </data>
+  <data name="Disclaimer_Link_SGDBTos.Content" xml:space="preserve">
+    <value>Правила пользования SteamGridDB</value>
+  </data>
+  <data name="Disclaimer_Text.Text" xml:space="preserve">
+    <value>Используя функционал поиска обложек SteamGridDB, вы соглашаетесь с Правилами пользования и Политикой конфиденциальностью SteamGridDB. Все изображения размещенные на сервисе SteamGridDB, являются интеллектуальной собственностью указанных авторов на карточке обложки.</value>
+  </data>
   <data name="ErrorBar.Message" xml:space="preserve">
     <value>Возникла проблема при загрузке файла списка приложений из файла. Это могло произойти по причине падения приложения, некорректного отключения системы или провалившейся операцией записи в файл во время сохранения списка приложений. Все элементы списка приложений были утеряны в связи с тем что файл не может быть прочитан корректно. Вы все еще можете попытаться восстановить список приложений вручную.</value>
   </data>
