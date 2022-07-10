@@ -42,7 +42,7 @@ namespace craftersmine.AppLauncher.Pages
             isLocalStorageUsed = true; 
             if (LocalCoverStorage.Instance.LocalCovers.Count == 0)
             {
-                NoResultsLabel.Text = "No downloaded covers found! Try searching for game and downloading a couple.";
+                NoResultsLabel.Text = ResourceManagers.StringsSteamGridDBResources.GetString("ErrorMessage_NoDownloadedCovers_Text");
                 RefreshLink.Visibility = Visibility.Collapsed;
                 GridViewEmptyListLabel.Visibility = Visibility.Visible;
                 LoaderRing.Visibility = Visibility.Collapsed;
@@ -68,7 +68,7 @@ namespace craftersmine.AppLauncher.Pages
             }
             else
             {
-                SearchBox.ItemsSource = new string[] { "No results found" };
+                SearchBox.ItemsSource = new string[] { ResourceManagers.StringsCommonResources.GetString("NoResults_Text") };
             }
         }
 
@@ -91,7 +91,7 @@ namespace craftersmine.AppLauncher.Pages
                 GridViewEmptyListLabel.Visibility = Visibility.Collapsed;
                 if (LocalCoverStorage.Instance.LocalCovers.Count == 0)
                 {
-                    NoResultsLabel.Text = "No downloaded covers found! Try searching for game and downloading a couple.";
+                    NoResultsLabel.Text = ResourceManagers.StringsSteamGridDBResources.GetString("ErrorMessage_NoDownloadedCovers_Text");
                     RefreshLink.Visibility = Visibility.Collapsed;
                     GridViewEmptyListLabel.Visibility = Visibility.Visible;
                     LoaderRing.Visibility = Visibility.Collapsed;
@@ -102,14 +102,14 @@ namespace craftersmine.AppLauncher.Pages
         private async void LoadGameCovers(SteamGridDbGame game)
         {
             LoaderRing.Visibility = Visibility.Visible;
-            NoResultsLabel.Text = "Unable to retrieve covers for " + lastSelectedGame.Name + ".";
+            NoResultsLabel.Text = string.Format(ResourceManagers.StringsSteamGridDBResources.GetString("ErrorMessage_NoCoversFoundForGame_Text"), lastSelectedGame.Name);
             GridViewEmptyListLabel.Visibility = Visibility.Collapsed;
             lastSelectedGame = game;
             var gridsResults = await SteamGridDb.SteamGridDb.Instance.LoadGridsById(game.Id);
 
             if (gridsResults is null || !gridsResults.Success)
             {
-                NoResultsLabel.Text = "Unable to retrieve covers for \"" + lastSelectedGame.Name + "\".";
+                NoResultsLabel.Text = string.Format(ResourceManagers.StringsSteamGridDBResources.GetString("ErrorMessage_UnableToRetrieveCovers_Text"), lastSelectedGame.Name);
                 GridViewEmptyListLabel.Visibility = Visibility.Visible;
                 RefreshLink.Visibility = Visibility.Visible;
                 LoaderRing.Visibility = Visibility.Collapsed;
@@ -118,7 +118,7 @@ namespace craftersmine.AppLauncher.Pages
 
             if (gridsResults.Covers.Length == 0)
             {
-                NoResultsLabel.Text = "No results found for \"" + lastSelectedGame.Name + "\"";
+                NoResultsLabel.Text = string.Format(ResourceManagers.StringsSteamGridDBResources.GetString("ErrorMessage_NoCoversFoundForGame_Text"), lastSelectedGame.Name);
                 GridViewEmptyListLabel.Visibility = Visibility.Visible;
                 RefreshLink.Visibility = Visibility.Visible;
                 LoaderRing.Visibility = Visibility.Collapsed;
@@ -223,7 +223,7 @@ namespace craftersmine.AppLauncher.Pages
 
             if (isLocalStorageUsed && LocalCoverStorage.Instance.LocalCovers.Count == 0)
             {
-                NoResultsLabel.Text = "No downloaded covers found! Try searching for game and downloading a couple.";
+                NoResultsLabel.Text = ResourceManagers.StringsSteamGridDBResources.GetString("ErrorMessage_NoDownloadedCovers_Text");
                 RefreshLink.Visibility = Visibility.Collapsed;
                 GridViewEmptyListLabel.Visibility = Visibility.Visible;
             }
