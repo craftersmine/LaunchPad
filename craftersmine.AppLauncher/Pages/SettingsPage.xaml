@@ -63,7 +63,7 @@
                 
                 <TextBlock Text="Disclaimer" x:Uid="/Settings/Disclaimer_Header" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0 40 0 0"/>
                 <TextBlock Text="Copyright &#x00A9; craftersmine 2022. Licensed under MIT License" Margin="0 18 0 0"/>
-                <TextBlock Text="By using SteamGridDB search functionality, you are agreeing to SteamGridDB Terms of Service and Privacy Policy. All SteamGridDB Grid Images are intellectual property or represented Author, shown on Grid Card." TextWrapping="WrapWholeWords" Margin="0 10 0 0" MaxWidth="800"/>
+                <TextBlock x:Uid="/Settings/Disclaimer_Text" Text="By using SteamGridDB search functionality, you are agreeing to SteamGridDB Terms of Service and Privacy Policy. All SteamGridDB Grid Images are intellectual property of represented Author, shown on Grid Card." TextWrapping="WrapWholeWords" Margin="0 10 0 0" MaxWidth="800"/>
                 <Grid Margin="0 0 0 50">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -74,12 +74,12 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <HyperlinkButton Grid.Row="0" Grid.Column="0" Content="GitHub" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad"/>
-                    <HyperlinkButton Grid.Row="0" Grid.Column="1" Content="License" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad/blob/master/LICENSE"/>
-                    <HyperlinkButton Grid.Row="0" Grid.Column="2" Content="Have an Issue?" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad/issues"/>
-                    <HyperlinkButton Grid.Row="1" Grid.Column="0" Content="SteamGridDB TOS" Padding="5" Margin="0 10 10 0" NavigateUri="https://www.steamgriddb.com/terms"/>
-                    <HyperlinkButton Grid.Row="1" Grid.Column="1" Content="SteamGridDB Privacy" Padding="5" Margin="0 10 10 0" NavigateUri="https://www.steamgriddb.com/privacy"/>
-                    <HyperlinkButton Grid.Row="1" Grid.Column="2" Content="SteamGridDB" Padding="5" Margin="0 10 0 0" NavigateUri="https://www.steamgriddb.com/"/>
+                    <HyperlinkButton x:Uid="/Settings/Disclaimer_Link_Github" Grid.Row="0" Grid.Column="0" Content="GitHub" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad"/>
+                    <HyperlinkButton x:Uid="/Settings/Disclaimer_Link_License" Grid.Row="0" Grid.Column="1" Content="License" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad/blob/master/LICENSE"/>
+                    <HyperlinkButton x:Uid="/Settings/Disclaimer_Link_Issues" Grid.Row="0" Grid.Column="2" Content="Have an Issue?" Padding="5" Margin="0 10 10 0" NavigateUri="https://github.com/craftersmine/LaunchPad/issues"/>
+                    <HyperlinkButton x:Uid="/Settings/Disclaimer_Link_SGDBTos" Grid.Row="1" Grid.Column="0" Content="SteamGridDB TOS" Padding="5" Margin="0 10 10 0" NavigateUri="https://www.steamgriddb.com/terms"/>
+                    <HyperlinkButton x:Uid="/Settings/Disclaimer_Link_SGDBPrivacy" Grid.Row="1" Grid.Column="1" Content="SteamGridDB Privacy" Padding="5" Margin="0 10 10 0" NavigateUri="https://www.steamgriddb.com/privacy"/>
+                    <HyperlinkButton x:Uid="/Settings/Disclaimer_Link_SGDB" Grid.Row="1" Grid.Column="2" Content="SteamGridDB" Padding="5" Margin="0 10 0 0" NavigateUri="https://www.steamgriddb.com/"/>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
